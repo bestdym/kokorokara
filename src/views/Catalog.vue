@@ -47,21 +47,8 @@ const filteredProducts = computed(() => {
       <!-- Categories & Search Bar -->
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
         
-        <!-- Category Buttons -->
-        <div class="flex flex-wrap items-center gap-3">
-          <button 
-            v-for="cat in categories" 
-            :key="cat"
-            @click="activeCategory = cat"
-            :class="['px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300', 
-              activeCategory === cat ? 'bg-[#8B3A3A] text-white shadow-md' : 'bg-stone-50 text-stone-600 border border-rose-100 hover:bg-rose-50 hover:text-rose-600']"
-          >
-            {{ cat }}
-          </button>
-        </div>
-
         <!-- Search Bar -->
-        <div class="w-full md:w-80 relative">
+        <div class="w-full md:w-80 relative shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
           </svg>
@@ -71,6 +58,19 @@ const filteredProducts = computed(() => {
             placeholder="Cari nama buket..." 
             class="w-full pl-12 pr-4 py-3 bg-[#FFFBF8] rounded-full border border-rose-200 focus:outline-none focus:border-[#8B3A3A] focus:ring-1 focus:ring-[#8B3A3A] shadow-sm transition-all"
           >
+        </div>
+
+        <!-- Category Buttons -->
+        <div class="flex flex-wrap items-center justify-end gap-3 flex-1">
+          <button 
+            v-for="cat in categories" 
+            :key="cat"
+            @click="activeCategory = cat"
+            :class="['px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300', 
+              activeCategory === cat ? 'bg-[#8B3A3A] text-white shadow-md' : 'bg-stone-50 text-stone-600 border border-rose-100 hover:bg-rose-50 hover:text-rose-600']"
+          >
+            {{ cat }}
+          </button>
         </div>
 
       </div>
