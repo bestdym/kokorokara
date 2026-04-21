@@ -3,12 +3,12 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <div class="min-h-screen bg-pink-50"> <!-- Soft pink background -->
+  <div class="min-h-screen bg-transparent"> <!-- Transparent to inherit App gradient -->
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
-      <!-- Background Abstract Decor (to make it look kekinian & soft) -->
-      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[40rem] h-[40rem] bg-rose-200 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
-      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[40rem] h-[40rem] bg-pink-200 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
+      <!-- Background Abstract Decor (Soft and elegant) -->
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[40rem] h-[40rem] bg-rose-50 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[40rem] h-[40rem] bg-pink-50 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
 
       <!-- Content Grid Layout -->
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center gap-12 pt-20">
@@ -58,7 +58,7 @@ import { RouterLink } from 'vue-router'
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
           <!-- Category 1 -->
-          <div class="group relative bg-pink-50/50 rounded-3xl p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-rose-100">
+          <div class="group relative bg-white/50 rounded-3xl p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-[#8B3A3A]/10">
             <div class="relative h-80 rounded-2xl overflow-hidden mb-6">
               <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Fresh Flowers" />
             </div>
@@ -72,7 +72,7 @@ import { RouterLink } from 'vue-router'
           </div>
           
           <!-- Category 2 -->
-          <div class="group relative bg-pink-50/50 rounded-3xl p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-rose-100">
+          <div class="group relative bg-white/50 rounded-3xl p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-[#8B3A3A]/10">
             <div class="relative h-80 rounded-2xl overflow-hidden mb-6">
               <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55ef6?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Rose Collection" />
             </div>
@@ -86,7 +86,7 @@ import { RouterLink } from 'vue-router'
           </div>
 
           <!-- Category 3 -->
-          <div class="group relative bg-pink-50/50 rounded-3xl p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-rose-100">
+          <div class="group relative bg-white/50 rounded-3xl p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-[#8B3A3A]/10">
             <div class="relative h-80 rounded-2xl overflow-hidden mb-6">
               <img src="https://images.unsplash.com/photo-1507311416545-92fee1c585c2?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Custom Orders" />
             </div>

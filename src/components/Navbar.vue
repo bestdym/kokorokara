@@ -44,10 +44,10 @@ const isActive = (path) => route.path === path
 
           <!-- Desktop Menu -->
           <div class="hidden md:flex items-center space-x-8">
-            <RouterLink to="/" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/') ? 'text-rose-600 border-b-2 border-rose-600' : 'text-stone-700 hover:text-rose-500']">Home</RouterLink>
-            <RouterLink to="/catalog" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/catalog') ? 'text-rose-600 border-b-2 border-rose-600' : 'text-stone-700 hover:text-rose-500']">Catalog</RouterLink>
-            <RouterLink to="/about" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/about') ? 'text-rose-600 border-b-2 border-rose-600' : 'text-stone-700 hover:text-rose-500']">About</RouterLink>
-            <RouterLink to="/contact" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/contact') ? 'text-rose-600 border-b-2 border-rose-600' : 'text-stone-700 hover:text-rose-500']">Contact</RouterLink>
+            <RouterLink to="/" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/') ? 'text-rose-950 border-b-2 border-rose-950' : 'text-stone-700 hover:text-rose-950']">Home</RouterLink>
+            <RouterLink to="/catalog" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/catalog') ? 'text-rose-950 border-b-2 border-rose-950' : 'text-stone-700 hover:text-rose-950']">Catalog</RouterLink>
+            <RouterLink to="/about" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/about') ? 'text-rose-950 border-b-2 border-rose-950' : 'text-stone-700 hover:text-rose-950']">About</RouterLink>
+            <RouterLink to="/contact" :class="['text-sm font-semibold tracking-wide transition-colors', isActive('/contact') ? 'text-rose-950 border-b-2 border-rose-950' : 'text-stone-700 hover:text-rose-950']">Contact</RouterLink>
           </div>
 
           <!-- Action Buttons -->
@@ -81,10 +81,10 @@ const isActive = (path) => route.path === path
     <!-- Mobile Menu Dropdown -->
     <div v-show="isMobileMenuOpen" class="md:hidden mt-2 mx-auto max-w-6xl">
       <div class="bg-white/95 backdrop-blur-md shadow-xl rounded-3xl border border-rose-100 overflow-hidden px-4 py-4 space-y-2">
-        <RouterLink @click="isMobileMenuOpen = false" to="/" :class="['block px-4 py-3 text-base rounded-xl', isActive('/') ? 'bg-rose-50 text-rose-700 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">Home</RouterLink>
-        <RouterLink @click="isMobileMenuOpen = false" to="/catalog" :class="['block px-4 py-3 text-base rounded-xl', isActive('/catalog') ? 'bg-rose-50 text-rose-700 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">Catalog</RouterLink>
-        <RouterLink @click="isMobileMenuOpen = false" to="/about" :class="['block px-4 py-3 text-base rounded-xl', isActive('/about') ? 'bg-rose-50 text-rose-700 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">About</RouterLink>
-        <RouterLink @click="isMobileMenuOpen = false" to="/contact" :class="['block px-4 py-3 text-base rounded-xl', isActive('/contact') ? 'bg-rose-50 text-rose-700 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">Contact</RouterLink>
+        <RouterLink @click="isMobileMenuOpen = false" to="/" :class="['block px-4 py-3 text-base rounded-xl', isActive('/') ? 'bg-rose-50 text-rose-950 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">Home</RouterLink>
+        <RouterLink @click="isMobileMenuOpen = false" to="/catalog" :class="['block px-4 py-3 text-base rounded-xl', isActive('/catalog') ? 'bg-rose-50 text-rose-950 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">Catalog</RouterLink>
+        <RouterLink @click="isMobileMenuOpen = false" to="/about" :class="['block px-4 py-3 text-base rounded-xl', isActive('/about') ? 'bg-rose-50 text-rose-950 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">About</RouterLink>
+        <RouterLink @click="isMobileMenuOpen = false" to="/contact" :class="['block px-4 py-3 text-base rounded-xl', isActive('/contact') ? 'bg-rose-50 text-rose-950 font-bold' : 'font-medium text-stone-800 hover:bg-stone-50']">Contact</RouterLink>
         <RouterLink @click="isMobileMenuOpen = false" to="/catalog" class="block mt-4 text-center px-4 py-3 text-base font-bold text-white bg-rose-700 hover:bg-rose-800 rounded-xl transition-colors">Shop Now</RouterLink>
       </div>
     </div>

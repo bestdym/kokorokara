@@ -11,7 +11,7 @@ const isDashboardFlow = computed(() => {
 </script>
 
 <template>
-  <div class="font-sans text-stone-900 bg-pink-50 min-h-screen flex flex-col">
+  <div class="font-sans text-stone-900 bg-white min-h-screen flex flex-col">
     <!-- Navbar Component -->
     <Navbar v-if="!isDashboardFlow" />
     

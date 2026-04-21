@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-pink-50 pt-40 pb-20">
+  <div class="min-h-screen bg-transparent pt-40 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center mb-16">
@@ -10,7 +10,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <!-- Contact Info -->
         <div class="space-y-10">
-          <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-rose-50">
+          <div class="bg-white/80 backdrop-blur-md p-8 rounded-[2.5rem] shadow-sm border border-[#8B3A3A]/10">
             <h3 class="text-3xl font-serif text-[#4A2525] mb-8">Contact Us</h3>
             
             <div class="space-y-8">
@@ -62,26 +62,26 @@
         </div>
 
         <!-- Contact Form -->
-        <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-rose-50">
+        <div class="bg-white/80 backdrop-blur-md p-8 rounded-[2.5rem] shadow-sm border border-[#8B3A3A]/10">
           <h3 class="text-3xl font-serif text-[#4A2525] mb-6">Send Direct Message</h3>
           <form class="space-y-6" @submit.prevent>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label class="block text-sm font-bold text-stone-700 mb-2">First Name</label>
-                <input type="text" placeholder="Enter name..." class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
+                <input type="text" placeholder="Enter name..." class="w-full px-5 py-4 bg-white/50 rounded-xl border border-[#8B3A3A]/10 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
               </div>
               <div>
                 <label class="block text-sm font-bold text-stone-700 mb-2">Last Name</label>
-                <input type="text" placeholder="Enter name..." class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
+                <input type="text" placeholder="Enter name..." class="w-full px-5 py-4 bg-white/50 rounded-xl border border-[#8B3A3A]/10 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
               </div>
             </div>
             <div>
               <label class="block text-sm font-bold text-stone-700 mb-2">Email Address</label>
-              <input type="email" placeholder="example@email.com" class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
+              <input type="email" placeholder="example@email.com" class="w-full px-5 py-4 bg-white/50 rounded-xl border border-[#8B3A3A]/10 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
             </div>
             <div>
               <label class="block text-sm font-bold text-stone-700 mb-2">Your Message</label>
-              <textarea rows="4" placeholder="Type your message here..." class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow"></textarea>
+              <textarea rows="4" placeholder="Type your message here..." class="w-full px-5 py-4 bg-white/50 rounded-xl border border-[#8B3A3A]/10 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow"></textarea>
             </div>
             <button type="submit" class="w-full bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 rounded-xl font-bold transition-all shadow-xl shadow-[#8B3A3A]/30">
               Send Message Now

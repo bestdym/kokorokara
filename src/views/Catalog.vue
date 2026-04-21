@@ -35,7 +35,7 @@ const filteredProducts = computed(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-white pt-32 pb-20">
+  <div class="min-h-screen bg-transparent pt-32 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Page Header -->
@@ -48,7 +48,7 @@ const filteredProducts = computed(() => {
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
         
         <!-- Search Bar -->
-        <div class="w-full md:w-80 relative shrink-0">
+        <div class="w-full md:w-[26rem] relative shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
           </svg>
@@ -77,25 +77,49 @@ const filteredProducts = computed(() => {
 
       <!-- Product Grid (4 Columns) -->
       <div v-if="filteredProducts.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
-        <div v-for="product in filteredProducts" :key="product.id" class="group relative cursor-pointer flex flex-col h-full">
-          <div class="relative bg-stone-100 rounded-3xl overflow-hidden aspect-[4/5] p-2 mb-4 border border-rose-50 shadow-sm transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1">
-            <img :src="product.image" :alt="product.name" class="w-full h-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105" />
+        <div v-for="product in filteredProducts" :key="product.id" class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+          <!-- Image Section -->
+          <div class="relative aspect-square overflow-hidden bg-stone-100 group">
+            <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             
-            <!-- Quick Add Button -->
-            <div class="absolute bottom-4 left-0 right-0 px-6 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
-              <button class="w-full bg-white/95 backdrop-blur-md text-[#8B3A3A] py-3 rounded-2xl font-bold hover:bg-[#8B3A3A] hover:text-white transition-colors shadow-lg border border-rose-100 uppercase tracking-widest text-xs">
-                Add to Cart
-              </button>
+            <!-- Promo tag -->
+            <div class="absolute top-4 left-4 bg-[#D4B572] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+              PROMO
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"></div>
+            
+            <!-- Favorite button -->
+            <button class="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-full text-stone-500 hover:text-rose-500 transition-colors shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
           </div>
           
-          <div class="flex flex-col justify-between items-start px-2 mt-auto">
-            <div>
-              <p class="text-xs text-rose-400 font-bold tracking-widest uppercase mb-1">{{ product.category }}</p>
-              <h3 class="text-xl font-serif text-[#4A2525] group-hover:text-rose-600 transition-colors leading-tight mb-2">{{ product.name }}</h3>
+          <!-- Content Section -->
+          <div class="p-6 flex flex-col flex-grow">
+            <!-- Header: Title and Price -->
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-lg font-serif text-[#4A2525] leading-tight pr-4 font-semibold">{{ product.name }}</h3>
+              <div class="text-right flex-shrink-0">
+                <p class="text-xs text-stone-400 line-through mb-0.5">{{ formatPrice(product.price + 50000) }}</p>
+                <p class="text-[15px] font-bold text-[#C57474]">{{ formatPrice(product.price) }}</p>
+              </div>
             </div>
-            <p class="text-lg font-bold text-[#8B3A3A]">{{ formatPrice(product.price) }}</p>
+            
+            <!-- Description -->
+            <p class="text-sm text-stone-500 mb-6 leading-relaxed line-clamp-2">Simple and elegant hand-tied bouquet perfect for bringing warmth and joy.</p>
+            
+            <!-- Action Buttons -->
+            <div class="mt-auto flex items-center gap-3">
+              <button class="flex-1 py-2.5 px-4 border border-rose-200 text-[#C57474] rounded-full text-sm font-semibold hover:bg-rose-50 hover:text-rose-600 transition-colors">
+                See Details
+              </button>
+              <button class="p-3 bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-colors flex-shrink-0 shadow-sm shadow-[#B88B8B]/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

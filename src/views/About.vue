@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <!-- Image -->
-        <div class="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-rose-100 p-2 bg-pink-50">
+        <div class="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-[#8B3A3A]/10 p-2 bg-white/50">
           <div class="w-full h-full rounded-2xl overflow-hidden">
             <img src="https://images.unsplash.com/photo-1572454591674-2739f30d8c40?w=800&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" alt="Pembuat Bunga (Florist)" />
           </div>
@@ -23,11 +23,11 @@
           </p>
           
           <div class="grid grid-cols-2 gap-8 mb-10">
-            <div class="bg-pink-50/50 p-6 rounded-3xl border border-rose-50 text-center">
+            <div class="bg-white/50 p-6 rounded-3xl border border-[#8B3A3A]/10 text-center">
               <h3 class="text-4xl font-serif text-[#8B3A3A] mb-2 drop-shadow-sm">10k+</h3>
               <p class="text-stone-500 text-xs uppercase tracking-widest font-bold">Satisfied Customers</p>
             </div>
-            <div class="bg-pink-50/50 p-6 rounded-3xl border border-rose-50 text-center">
+            <div class="bg-white/50 p-6 rounded-3xl border border-[#8B3A3A]/10 text-center">
               <h3 class="text-4xl font-serif text-[#8B3A3A] mb-2 drop-shadow-sm">100%</h3>
               <p class="text-stone-500 text-xs uppercase tracking-widest font-bold">Handcrafted</p>
             </div>
