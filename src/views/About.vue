@@ -16,7 +16,7 @@
           </span>
           <h1 class="text-4xl md:text-5xl font-serif text-[#4A2525] mb-6">The Story Behind Kokorokara</h1>
           <p class="text-lg text-stone-600 mb-6 font-light leading-relaxed">
-            Welcome to Kokorokara, where poetry meets flower petals. Founded with a passion to bring nature's most beautiful masterpieces into your most important moments, we believe that every bouquet tells its own story.
+            Welcome to Kokorokara, established since 2023, where poetry meets flower petals. Founded with a passion to bring nature's most beautiful masterpieces into your most important moments, we believe that every bouquet tells its own story.
           </p>
           <p class="text-lg text-stone-600 mb-8 font-light leading-relaxed">
             Starting from a small dream of arranging beauty, Kokorokara has blossomed into a beloved boutique that prioritizes quality, creativity, and the joy of sharing. Every stem in our collection is selected with precision and arranged with love.

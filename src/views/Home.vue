@@ -18,12 +18,13 @@ import { RouterLink } from 'vue-router'
           <span class="inline-block py-1 px-3 rounded-full bg-rose-200 text-rose-900 text-sm font-semibold tracking-wider mb-6 border border-rose-300">
             PREMIUM FLORIST QUALITY
           </span>
-          <h1 class="text-5xl md:text-7xl font-serif text-[#4A2525] mb-6 leading-tight"> <!-- Maroon/Dark Brown text -->
-            Let Flowers <br/>
-            <span class="text-rose-600 italic">Speak For You</span>
+          <h1 class="text-5xl md:text-6xl font-serif text-[#4A2525] mb-6 leading-tight"> <!-- Maroon/Dark Brown text -->
+            From a Love Language <br/>
+            <span class="text-rose-600 italic text-4xl md:text-6xl">to giving flowers to girlfriend</span>
           </h1>
-          <p class="text-lg md:text-xl text-stone-600 mb-10 font-light max-w-lg mx-auto md:mx-0 leading-relaxed">
-            Handcrafted flower bouquets with elegant soft colors, ready to perfect your every special moment.
+          <p class="text-lg md:text-xl text-stone-600 mb-10 font-light max-w-lg mx-auto md:mx-0 leading-relaxed border-l-4 border-rose-200 pl-4">
+            - to be a something to do with love, with the bottom of the heart <br/>
+            <span class="font-bold text-[#8B3A3A] mt-2 inline-block">— Kokorokara</span>
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
             <RouterLink to="/catalog" class="bg-[#8B3A3A] hover:bg-[#682a2a] text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-[#8B3A3A]/30 w-full sm:w-auto">
