@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen bg-[#FFFBF8] pt-40 pb-20">
+  <div class="min-h-screen bg-pink-50 pt-40 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-5xl font-serif text-[#4A2525] mb-4">Mari Bicara Bunga</h1>
-        <p class="text-stone-500 max-w-2xl mx-auto">Kami sangat senang mendengarnya dari Anda. Entah itu pesanan buket khusus, untuk acara istimewa, atau sekadar bertanya tentang koleksi kami.</p>
+        <h1 class="text-4xl md:text-5xl font-serif text-[#4A2525] mb-4">Let's Talk Flowers</h1>
+        <p class="text-stone-500 max-w-2xl mx-auto">We are very happy to hear from you. Whether it's a special bouquet order, for a special event, or just to ask about our collection.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <!-- Contact Info -->
         <div class="space-y-10">
           <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-rose-50">
-            <h3 class="text-3xl font-serif text-[#4A2525] mb-8">Hubungi Kami</h3>
+            <h3 class="text-3xl font-serif text-[#4A2525] mb-8">Contact Us</h3>
             
             <div class="space-y-8">
               <div class="flex items-start space-x-5 group">
@@ -22,7 +22,7 @@
                   </svg>
                 </div>
                 <div class="pt-1">
-                  <h4 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Kunjungi Butik</h4>
+                  <h4 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Visit Boutique</h4>
                   <p class="text-stone-500 leading-relaxed text-base">Jl. Teuku Umar No.43<br/>Denpasar Barat, Bali</p>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                   </svg>
                 </div>
                 <div class="pt-1">
-                  <h4 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Telepon & WhatsApp</h4>
+                  <h4 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Phone & WhatsApp</h4>
                   <p class="text-stone-500 leading-relaxed text-base">+62 878 2583 0959</p>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                   </svg>
                 </div>
                 <div class="pt-1">
-                  <h4 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Kirim Email</h4>
+                  <h4 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-1">Send Email</h4>
                   <p class="text-stone-500 leading-relaxed text-base">hello@kokorokara.com</p>
                 </div>
               </div>
@@ -63,28 +63,28 @@
 
         <!-- Contact Form -->
         <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-rose-50">
-          <h3 class="text-3xl font-serif text-[#4A2525] mb-6">Kirim Pesan Langsung</h3>
+          <h3 class="text-3xl font-serif text-[#4A2525] mb-6">Send Direct Message</h3>
           <form class="space-y-6" @submit.prevent>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label class="block text-sm font-bold text-stone-700 mb-2">Nama Depan</label>
-                <input type="text" placeholder="Masukkan nama..." class="w-full px-5 py-4 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
+                <label class="block text-sm font-bold text-stone-700 mb-2">First Name</label>
+                <input type="text" placeholder="Enter name..." class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
               </div>
               <div>
-                <label class="block text-sm font-bold text-stone-700 mb-2">Nama Belakang</label>
-                <input type="text" placeholder="Masukkan nama..." class="w-full px-5 py-4 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
+                <label class="block text-sm font-bold text-stone-700 mb-2">Last Name</label>
+                <input type="text" placeholder="Enter name..." class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
               </div>
             </div>
             <div>
-              <label class="block text-sm font-bold text-stone-700 mb-2">Alamat Email</label>
-              <input type="email" placeholder="contoh@email.com" class="w-full px-5 py-4 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
+              <label class="block text-sm font-bold text-stone-700 mb-2">Email Address</label>
+              <input type="email" placeholder="example@email.com" class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow" />
             </div>
             <div>
-              <label class="block text-sm font-bold text-stone-700 mb-2">Pesan Anda</label>
-              <textarea rows="4" placeholder="Ketik pesan Anda di sini..." class="w-full px-5 py-4 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow"></textarea>
+              <label class="block text-sm font-bold text-stone-700 mb-2">Your Message</label>
+              <textarea rows="4" placeholder="Type your message here..." class="w-full px-5 py-4 bg-pink-50/50 rounded-xl border border-rose-100 focus:outline-none focus:ring-2 focus:ring-[#8B3A3A] transition-shadow"></textarea>
             </div>
             <button type="submit" class="w-full bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 rounded-xl font-bold transition-all shadow-xl shadow-[#8B3A3A]/30">
-              Kirim Pesan Sekarang
+              Send Message Now
             </button>
           </form>
         </div>

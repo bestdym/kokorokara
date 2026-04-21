@@ -1,19 +1,19 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const categories = ['Semua', 'Bunga Segar', 'Mawar', 'Bunga Semu', 'Premium']
-const activeCategory = ref('Semua')
+const categories = ['All', 'Fresh Flowers', 'Roses', 'Artificial Flowers', 'Premium']
+const activeCategory = ref('All')
 const searchQuery = ref('')
 
 const products = ref([
-  { id: 1, name: 'Cinta Merona', price: 450000, category: 'Mawar', image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55ef6?w=800&auto=format&fit=crop' },
-  { id: 2, name: 'Taman Mentari', price: 350000, category: 'Bunga Segar', image: 'https://images.unsplash.com/photo-1508611440879-166fa2772590?w=800&auto=format&fit=crop' },
-  { id: 3, name: 'Putih Keanggunan', price: 550000, category: 'Premium', image: 'https://images.unsplash.com/photo-1457089328109-e5d9f05f0e90?w=800&auto=format&fit=crop' },
-  { id: 4, name: 'Mimpi Pastel', price: 400000, category: 'Bunga Segar', image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&auto=format&fit=crop' },
-  { id: 5, name: 'Cantik Abadi', price: 300000, category: 'Bunga Semu', image: 'https://images.unsplash.com/photo-1507311416545-92fee1c585c2?w=800&auto=format&fit=crop' },
-  { id: 6, name: 'Romansa Dalam', price: 600000, category: 'Mawar', image: 'https://images.unsplash.com/photo-1548625361-b54c8ee8618e?w=800&auto=format&fit=crop' },
-  { id: 7, name: 'Mentari Pagi', price: 250000, category: 'Bunga Segar', image: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&auto=format&fit=crop' },
-  { id: 8, name: 'Elegansi Klasik', price: 750000, category: 'Premium', image: 'https://images.unsplash.com/photo-1518717871626-d62fba237332?w=800&auto=format&fit=crop' },
+  { id: 1, name: 'Blushing Love', price: 450000, category: 'Roses', image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55ef6?w=800&auto=format&fit=crop' },
+  { id: 2, name: 'Sunny Garden', price: 350000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1508611440879-166fa2772590?w=800&auto=format&fit=crop' },
+  { id: 3, name: 'White Elegance', price: 550000, category: 'Premium', image: 'https://images.unsplash.com/photo-1457089328109-e5d9f05f0e90?w=800&auto=format&fit=crop' },
+  { id: 4, name: 'Pastel Dream', price: 400000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&auto=format&fit=crop' },
+  { id: 5, name: 'Eternal Beauty', price: 300000, category: 'Artificial Flowers', image: 'https://images.unsplash.com/photo-1507311416545-92fee1c585c2?w=800&auto=format&fit=crop' },
+  { id: 6, name: 'Deep Romance', price: 600000, category: 'Roses', image: 'https://images.unsplash.com/photo-1548625361-b54c8ee8618e?w=800&auto=format&fit=crop' },
+  { id: 7, name: 'Morning Sun', price: 250000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&auto=format&fit=crop' },
+  { id: 8, name: 'Classic Elegance', price: 750000, category: 'Premium', image: 'https://images.unsplash.com/photo-1518717871626-d62fba237332?w=800&auto=format&fit=crop' },
 ])
 
 const formatPrice = (price) => {
@@ -23,7 +23,7 @@ const formatPrice = (price) => {
 const filteredProducts = computed(() => {
   return products.value.filter(product => {
     // Filter kategori
-    const matchCategory = activeCategory.value === 'Semua' || product.category === activeCategory.value;
+    const matchCategory = activeCategory.value === 'All' || product.category === activeCategory.value;
     
     // Filter pencarian
     const matchSearch = product.name.toLowerCase().includes(searchQuery.value.toLowerCase()) || 
@@ -40,8 +40,8 @@ const filteredProducts = computed(() => {
       
       <!-- Page Header -->
       <div class="text-center py-12">
-        <h1 class="text-4xl md:text-5xl font-serif text-[#4A2525] mb-4">Koleksi Kami</h1>
-        <p class="text-stone-500 max-w-2xl mx-auto">Jelajahi dan temukan pilihan buket cantik yang dikurasi dengan sepenuh hati.</p>
+        <h1 class="text-4xl md:text-5xl font-serif text-[#4A2525] mb-4">Our Collection</h1>
+        <p class="text-stone-500 max-w-2xl mx-auto">Explore and discover a selection of beautiful bouquets hand-curated with all our heart.</p>
       </div>
 
       <!-- Categories & Search Bar -->
@@ -55,8 +55,8 @@ const filteredProducts = computed(() => {
           <input 
             v-model="searchQuery" 
             type="text" 
-            placeholder="Cari nama buket..." 
-            class="w-full pl-12 pr-4 py-3 bg-[#FFFBF8] rounded-full border border-rose-200 focus:outline-none focus:border-[#8B3A3A] focus:ring-1 focus:ring-[#8B3A3A] shadow-sm transition-all"
+            placeholder="Search bouquet name..." 
+            class="w-full pl-12 pr-4 py-3 bg-white rounded-full border border-rose-200 focus:outline-none focus:border-[#8B3A3A] focus:ring-1 focus:ring-[#8B3A3A] shadow-sm transition-all"
           >
         </div>
 
@@ -84,7 +84,7 @@ const filteredProducts = computed(() => {
             <!-- Quick Add Button -->
             <div class="absolute bottom-4 left-0 right-0 px-6 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
               <button class="w-full bg-white/95 backdrop-blur-md text-[#8B3A3A] py-3 rounded-2xl font-bold hover:bg-[#8B3A3A] hover:text-white transition-colors shadow-lg border border-rose-100 uppercase tracking-widest text-xs">
-                Tambah
+                Add to Cart
               </button>
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-3xl"></div>
@@ -103,10 +103,10 @@ const filteredProducts = computed(() => {
       <!-- Empty State -->
       <div v-else class="py-20 text-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-rose-200 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        <h3 class="text-xl font-bold text-[#4A2525] mb-2">Buket Tidak Ditemukan</h3>
-        <p class="text-stone-500">Maaf, kami tidak dapat menemukan produk yang sesuai dengan pencarian Anda.</p>
-        <button @click="searchQuery = ''; activeCategory = 'Semua'" class="mt-6 font-bold text-rose-600 hover:text-rose-800 transition">
-          Reset Pencarian
+        <h3 class="text-xl font-bold text-[#4A2525] mb-2">Bouquet Not Found</h3>
+        <p class="text-stone-500">Sorry, we couldn't find any products matching your search.</p>
+        <button @click="searchQuery = ''; activeCategory = 'All'" class="mt-6 font-bold text-rose-600 hover:text-rose-800 transition">
+          Reset Search
         </button>
       </div>
 
