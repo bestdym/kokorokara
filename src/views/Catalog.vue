@@ -111,7 +111,7 @@ const filteredProducts = computed(() => {
             
             <!-- Action Buttons -->
             <div class="mt-auto flex items-center gap-3">
-              <button class="flex-1 py-2.5 px-4 border border-rose-200 text-[#C57474] rounded-full text-sm font-semibold hover:bg-rose-50 hover:text-rose-600 transition-colors">
+              <button class="flex-1 py-2.5 px-4 border border-rose-200 text-[#B88B8B] rounded-full text-sm font-semibold hover:bg-rose-50 transition-colors">
                 See Details
               </button>
               <button class="p-3 bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-colors flex-shrink-0 shadow-sm shadow-[#B88B8B]/30">
