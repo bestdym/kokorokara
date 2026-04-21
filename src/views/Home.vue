@@ -6,10 +6,6 @@ import { RouterLink } from 'vue-router'
   <div class="min-h-screen bg-transparent"> <!-- Transparent to inherit App gradient -->
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
-      <!-- Background Abstract Decor (Soft and elegant) -->
-      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[40rem] h-[40rem] bg-rose-50 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
-      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[40rem] h-[40rem] bg-pink-50 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
-
       <!-- Content Grid Layout -->
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center gap-12 pt-20">
         
