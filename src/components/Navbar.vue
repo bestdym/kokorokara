@@ -26,13 +26,13 @@ const isActive = (path) => route.path === path
   <div class="fixed top-0 left-0 w-full z-50 px-4 pt-4 transition-all duration-300">
     <nav 
       :class="[
-        'w-full transition-all duration-300',
+        'max-w-6xl mx-auto rounded-full transition-all duration-300 border',
         isScrolled 
-          ? 'bg-white/90 backdrop-blur-lg shadow-sm py-4' 
-          : 'bg-transparent py-6'
+          ? 'bg-rose-50/80 backdrop-blur-lg shadow-lg border-rose-100/50 py-3' 
+          : 'bg-white/60 backdrop-blur-md shadow-sm border-white/40 py-4'
       ]"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="px-6 md:px-8">
         <div class="flex justify-between items-center">
           <!-- Logo -->
           <RouterLink to="/" class="flex-shrink-0 flex items-center gap-3">
