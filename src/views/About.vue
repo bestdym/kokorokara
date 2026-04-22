@@ -21,10 +21,13 @@
           <p class="text-lg text-stone-600 mb-8 font-light leading-relaxed">
             Starting from a small dream of arranging beauty, Kokorokara has blossomed into a beloved boutique that prioritizes quality, creativity, and the joy of sharing. Every stem in our collection is selected with precision and arranged with love.
           </p>
+          <p class="text-lg text-stone-600 mb-8 font-light leading-relaxed">
+            We specialize in curating delicate and meaningful arrangements, combining elegant color palettes with premium craftsmanship. Each of our creations is designed to convey emotions that words sometimes cannot express, celebrating both grand milestones and everyday affections.
+          </p>
           
           <div class="grid grid-cols-2 gap-8 mb-10">
             <div class="bg-white/50 p-6 rounded-3xl border border-[#8B3A3A]/10 text-center">
-              <h3 class="text-4xl font-serif text-[#8B3A3A] mb-2 drop-shadow-sm">10k+</h3>
+              <h3 class="text-4xl font-serif text-[#8B3A3A] mb-2 drop-shadow-sm">1k+</h3>
               <p class="text-stone-500 text-xs uppercase tracking-widest font-bold">Satisfied Customers</p>
             </div>
             <div class="bg-white/50 p-6 rounded-3xl border border-[#8B3A3A]/10 text-center">

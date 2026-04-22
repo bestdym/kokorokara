@@ -15,12 +15,11 @@ import { RouterLink } from 'vue-router'
             PREMIUM FLORIST QUALITY
           </span>
           <h1 class="text-5xl md:text-6xl font-serif text-[#4A2525] mb-6 leading-tight"> <!-- Maroon/Dark Brown text -->
-            From Flower Petals <br/>
-            <span class="text-rose-600 italic text-4xl md:text-[3.5rem] mt-2 inline-block">Depicting Love</span>
+            Let the Flowers <br/>
+            <span class="text-rose-600 italic text-4xl md:text-[3.5rem] mt-2 inline-block">tells Story</span>
           </h1>
           <p class="text-lg md:text-xl text-stone-600 mb-10 font-light max-w-lg mx-auto md:mx-0 leading-relaxed border-l-4 border-rose-200 pl-4">
-            "from a love language to giving flowers to girlfriend - to be a something to do with love, with the bottom of the heart" <br/>
-            <span class="font-bold text-[#8B3A3A] mt-2 inline-block">— Kokorokara</span>
+            Handcrafted flower bouquets with elegant soft colors, ready to perfect your every special moment.
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
             <RouterLink to="/catalog" class="bg-[#8B3A3A] hover:bg-[#682a2a] text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-[#8B3A3A]/30 w-full sm:w-auto">
