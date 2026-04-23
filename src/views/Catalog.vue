@@ -6,14 +6,14 @@ const activeCategory = ref('All')
 const searchQuery = ref('')
 
 const products = ref([
-  { id: 1, name: 'Blushing Love', price: 450000, category: 'Roses', image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55ef6?w=800&auto=format&fit=crop' },
+  { id: 1, name: 'Blushing Love', price: 450000, original_price: 500000, category: 'Roses', image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55ef6?w=800&auto=format&fit=crop' },
   { id: 2, name: 'Sunny Garden', price: 350000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1508611440879-166fa2772590?w=800&auto=format&fit=crop' },
-  { id: 3, name: 'White Elegance', price: 550000, category: 'Premium', image: 'https://images.unsplash.com/photo-1457089328109-e5d9f05f0e90?w=800&auto=format&fit=crop' },
+  { id: 3, name: 'White Elegance', price: 550000, original_price: 650000, category: 'Premium', image: 'https://images.unsplash.com/photo-1457089328109-e5d9f05f0e90?w=800&auto=format&fit=crop' },
   { id: 4, name: 'Pastel Dream', price: 400000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&auto=format&fit=crop' },
-  { id: 5, name: 'Eternal Beauty', price: 300000, category: 'Artificial Flowers', image: 'https://images.unsplash.com/photo-1507311416545-92fee1c585c2?w=800&auto=format&fit=crop' },
+  { id: 5, name: 'Eternal Beauty', price: 300000, original_price: 350000, category: 'Artificial Flowers', image: 'https://images.unsplash.com/photo-1507311416545-92fee1c585c2?w=800&auto=format&fit=crop' },
   { id: 6, name: 'Deep Romance', price: 600000, category: 'Roses', image: 'https://images.unsplash.com/photo-1548625361-b54c8ee8618e?w=800&auto=format&fit=crop' },
   { id: 7, name: 'Morning Sun', price: 250000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&auto=format&fit=crop' },
-  { id: 8, name: 'Classic Elegance', price: 750000, category: 'Premium', image: 'https://images.unsplash.com/photo-1518717871626-d62fba237332?w=800&auto=format&fit=crop' },
+  { id: 8, name: 'Classic Elegance', price: 750000, original_price: 850000, category: 'Premium', image: 'https://images.unsplash.com/photo-1518717871626-d62fba237332?w=800&auto=format&fit=crop' },
 ])
 
 const formatPrice = (price) => {
@@ -91,7 +91,8 @@ const filteredProducts = computed(() => {
             <div class="flex justify-between items-start mb-3">
               <h3 class="text-lg font-serif text-[#4A2525] leading-tight pr-4 font-semibold">{{ product.name }}</h3>
               <div class="text-right flex-shrink-0">
-                <p class="text-xs text-stone-400 line-through mb-0.5">{{ formatPrice(product.price + 50000) }}</p>
+                <p v-if="product.original_price" class="text-xs text-stone-400 line-through mb-0.5">{{ formatPrice(product.original_price) }}</p>
+                <div v-else class="h-4 mb-0.5"></div>
                 <p class="text-[15px] font-bold text-[#C57474]">{{ formatPrice(product.price) }}</p>
               </div>
             </div>

@@ -13,7 +13,7 @@ const categories = ref([])
 const settings = ref({ whatsapp_number: '', is_maintenance: false })
 
 // Form State
-const productForm = ref({ name: '', description: '', price: 0, image_url: '', category: '', is_preorder: false, estimated_days: 0, is_available: true })
+const productForm = ref({ name: '', description: '', price: 0, original_price: null, image_url: '', category: '', is_preorder: false, estimated_days: 0, is_available: true })
 const isEditingProduct = ref(false)
 const showProductModal = ref(false)
 
@@ -55,7 +55,7 @@ const saveSettings = async () => {
 
 // Products
 const openAddProduct = () => {
-  productForm.value = { name: '', description: '', price: 0, image_url: '', category: categories.value[0]?.name || '', is_preorder: false, estimated_days: 0, is_available: true }
+  productForm.value = { name: '', description: '', price: 0, original_price: null, image_url: '', category: categories.value[0]?.name || '', is_preorder: false, estimated_days: 0, is_available: true }
   isEditingProduct.value = false
   showProductModal.value = true
 }
@@ -197,7 +197,10 @@ onMounted(() => {
                       <td class="p-5">
                         <span class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold">{{ prod.category }}</span>
                       </td>
-                      <td class="p-5 text-sm font-bold text-[#8B3A3A]">{{ formatPrice(prod.price) }}</td>
+                      <td class="p-5">
+                        <div v-if="prod.original_price" class="text-xs text-stone-400 line-through mb-0.5">{{ formatPrice(prod.original_price) }}</div>
+                        <div class="text-sm font-bold text-[#8B3A3A]">{{ formatPrice(prod.price) }}</div>
+                      </td>
                       <td class="p-5">
                         <div class="flex items-center space-x-2">
                           <span v-if="prod.is_available" class="px-2.5 py-1 bg-[#E8F8EE] text-[#137A3E] rounded-md text-[11px] uppercase tracking-wider font-bold">Tersedia</span>
@@ -309,6 +312,14 @@ onMounted(() => {
               <div class="relative">
                 <span class="absolute left-4 top-3.5 text-stone-500 font-bold">Rp</span>
                 <input v-model.number="productForm.price" type="number" required class="w-full pl-12 pr-4 py-3 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-1 focus:ring-[#8B3A3A]" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-stone-700 mb-1">Harga Coret (Opsional)</label>
+              <div class="relative">
+                <span class="absolute left-4 top-3.5 text-stone-500 font-bold">Rp</span>
+                <input v-model.number="productForm.original_price" type="number" placeholder="Kosongkan jika tidak ada diskon" class="w-full pl-12 pr-4 py-3 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-1 focus:ring-[#8B3A3A]" />
               </div>
             </div>
 
