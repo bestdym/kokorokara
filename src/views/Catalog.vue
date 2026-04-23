@@ -7,6 +7,15 @@ const activeCategory = ref('All')
 const searchQuery = ref('')
 const isLoading = ref(true)
 const products = ref([])
+const selectedProduct = ref(null)
+
+const openProductDetail = (product) => {
+  selectedProduct.value = product
+}
+
+const closeProductDetail = () => {
+  selectedProduct.value = null
+}
 
 const fetchProducts = async () => {
   isLoading.value = true
@@ -101,11 +110,9 @@ const filteredProducts = computed(() => {
       <div v-if="filteredProducts.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
         <div v-for="product in filteredProducts" :key="product.id" class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
           <!-- Image Section -->
-          <div class="relative aspect-square overflow-hidden bg-stone-100 group">
+          <div class="relative aspect-square overflow-hidden bg-stone-100 group cursor-pointer" @click="openProductDetail(product)">
             <img v-if="product.image_url" :src="product.image_url" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div v-else class="w-full h-full flex items-center justify-center bg-stone-100 text-stone-400">Tanpa Foto</div>
-            
-
           </div>
           
           <!-- Content Section -->
@@ -125,7 +132,7 @@ const filteredProducts = computed(() => {
             
             <!-- Action Buttons -->
             <div class="mt-auto flex items-center gap-3">
-              <button class="flex-1 py-2.5 px-4 border border-rose-200 text-[#B88B8B] rounded-full text-sm font-semibold hover:bg-rose-50 transition-colors">
+              <button @click="openProductDetail(product)" class="flex-1 py-2.5 px-4 border border-rose-200 text-[#B88B8B] rounded-full text-sm font-semibold hover:bg-rose-50 transition-colors">
                 See Details
               </button>
               <button class="p-3 bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-colors flex-shrink-0 shadow-sm shadow-[#B88B8B]/30">
@@ -148,6 +155,54 @@ const filteredProducts = computed(() => {
         </button>
       </div>
 
+    </div>
+
+    <!-- Product Detail Modal Overlay -->
+    <div v-if="selectedProduct" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-rose-100 relative">
+        
+        <!-- Close Button (Absolute against modal) -->
+        <button @click="closeProductDetail" class="absolute top-4 right-4 z-10 text-stone-400 hover:text-[#4A2525] bg-white/50 hover:bg-white backdrop-blur-sm shadow-sm p-2 rounded-full transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+
+        <!-- Left: Image -->
+        <div class="w-full md:w-1/2 h-64 md:h-auto bg-stone-100 relative shrink-0">
+          <img v-if="selectedProduct.image_url" :src="selectedProduct.image_url" :alt="selectedProduct.name" class="w-full h-full object-cover" />
+          <div v-else class="w-full h-full flex items-center justify-center text-stone-400">Tanpa Foto</div>
+          <!-- PO Tag inside image -->
+          <span v-if="selectedProduct.is_preorder" class="absolute top-4 left-4 px-3 py-1 bg-yellow-100/90 backdrop-blur text-yellow-800 rounded-lg text-xs font-bold border border-yellow-200/50 shadow-sm">
+            Tersedia Pre-Order ({{ selectedProduct.estimated_days }} Hari)
+          </span>
+        </div>
+
+        <!-- Right: Information -->
+        <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col overflow-y-auto">
+          <div class="mb-6">
+            <span class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold mb-4 inline-block tracking-wide uppercase">{{ selectedProduct.category }}</span>
+            <h2 class="text-3xl font-serif text-[#4A2525] leading-tight font-semibold mb-2">{{ selectedProduct.name }}</h2>
+            
+            <div class="flex items-center gap-3">
+              <p class="text-2xl font-bold text-[#C57474]">{{ formatPrice(selectedProduct.price) }}</p>
+              <p v-if="selectedProduct.original_price" class="text-sm text-stone-400 line-through">{{ formatPrice(selectedProduct.original_price) }}</p>
+            </div>
+          </div>
+
+          <div class="mb-8 flex-1">
+            <h4 class="text-sm font-bold text-stone-700 mb-2">Deskripsi Produk</h4>
+            <p class="text-stone-500 leading-relaxed text-sm whitespace-pre-line">{{ selectedProduct.description || 'Tidak ada deskripsi rinci untuk produk ini.' }}</p>
+          </div>
+
+          <!-- Checkout Button -->
+          <div class="mt-auto pt-6 border-t border-rose-50 flex gap-4">
+             <button class="flex-1 bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 rounded-xl font-bold transition-all shadow-lg flex justify-center items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                Pesan Sekarang
+             </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </template>
