@@ -328,7 +328,7 @@ onMounted(() => {
 
           <!-- Tab: Categories -->
           <div v-if="activeTab === 'categories'">
-            <div class="bg-white rounded-2xl shadow-sm border border-rose-50 overflow-hidden max-w-4xl">
+            <div class="bg-white rounded-2xl shadow-sm border border-rose-50 overflow-hidden">
               <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse whitespace-nowrap">
                   <thead>
