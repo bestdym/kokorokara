@@ -13,9 +13,35 @@ const categories = ref([])
 const settings = ref({ whatsapp_number: '', is_maintenance: false })
 
 // Form State
-const productForm = ref({ name: '', description: '', price: 0, original_price: null, image_url: '', category: '', is_preorder: false, estimated_days: 0, is_available: true })
+const productForm = ref({ name: '', description: '', price: 0, original_price: null, image_url: '', category_id: null, is_preorder: false, estimated_days: 0, is_available: true })
 const isEditingProduct = ref(false)
 const showProductModal = ref(false)
+const isUploading = ref(false)
+
+const handleFileUpload = async (event) => {
+  const file = event.target.files[0]
+  if (!file) return
+  
+  isUploading.value = true
+  try {
+    const fileExt = file.name.split('.').pop()
+    const fileName = `${Math.random()}.${fileExt}`
+    const filePath = `product_images/${fileName}`
+
+    const { error: uploadError } = await supabase.storage
+      .from('products')
+      .upload(filePath, file, { cacheControl: '3600', upsert: false })
+
+    if (uploadError) throw uploadError
+
+    const { data } = supabase.storage.from('products').getPublicUrl(filePath)
+    productForm.value.image_url = data.publicUrl
+  } catch (err) {
+    alert('Gagal mengupload gambar: ' + err.message)
+  } finally {
+    isUploading.value = false
+  }
+}
 
 const handleLogout = async () => {
   await supabase.auth.signOut()
@@ -27,7 +53,7 @@ const fetchData = async () => {
   isLoading.value = true
   try {
     const [prodRes, catRes, setRes] = await Promise.all([
-      supabase.from('products').select('*').order('id', { ascending: false }),
+      supabase.from('products').select('*, categories(name)').order('id', { ascending: false }),
       supabase.from('categories').select('*'),
       supabase.from('settings').select('*').limit(1).single()
     ])
@@ -55,7 +81,7 @@ const saveSettings = async () => {
 
 // Products
 const openAddProduct = () => {
-  productForm.value = { name: '', description: '', price: 0, original_price: null, image_url: '', category: categories.value[0]?.name || '', is_preorder: false, estimated_days: 0, is_available: true }
+  productForm.value = { name: '', description: '', price: 0, original_price: null, image_url: '', category_id: categories.value[0]?.id || null, is_preorder: false, estimated_days: 0, is_available: true }
   isEditingProduct.value = false
   showProductModal.value = true
 }
@@ -68,11 +94,14 @@ const openEditProduct = (prod) => {
 
 const saveProduct = async () => {
   try {
+    const payload = { ...productForm.value }
+    delete payload.categories // Remove joined data before saving
+
     if (isEditingProduct.value) {
-      const { error } = await supabase.from('products').update(productForm.value).eq('id', productForm.value.id)
+      const { error } = await supabase.from('products').update(payload).eq('id', payload.id)
       if (error) throw error
     } else {
-      const { error } = await supabase.from('products').insert([productForm.value])
+      const { error } = await supabase.from('products').insert([payload])
       if (error) throw error
     }
     showProductModal.value = false
@@ -195,7 +224,7 @@ onMounted(() => {
                         </div>
                       </td>
                       <td class="p-5">
-                        <span class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold">{{ prod.category }}</span>
+                        <span class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold">{{ prod.categories?.name || '-' }}</span>
                       </td>
                       <td class="p-5">
                         <div v-if="prod.original_price" class="text-xs text-stone-400 line-through mb-0.5">{{ formatPrice(prod.original_price) }}</div>
@@ -325,15 +354,20 @@ onMounted(() => {
 
             <div>
               <label class="block text-sm font-bold text-stone-700 mb-1">Kategori Induk</label>
-              <input v-model="productForm.category" list="cat-list" required placeholder="Pilih yang ada atau ketik baru" class="w-full px-4 py-3 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-1 focus:ring-[#8B3A3A]" />
-              <datalist id="cat-list">
-                <option v-for="cat in categories" :key="cat.id" :value="cat.name"></option>
-              </datalist>
+              <select v-model="productForm.category_id" required class="w-full px-4 py-3 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-1 focus:ring-[#8B3A3A]">
+                <option v-for="cat in categories" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
+              </select>
             </div>
             
             <div class="col-span-2">
-              <label class="block text-sm font-bold text-stone-700 mb-1">URL Direktori Gambar</label>
-              <input v-model="productForm.image_url" type="url" placeholder="https://..." class="w-full px-4 py-3 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none focus:ring-1 focus:ring-[#8B3A3A]" />
+              <label class="block text-sm font-bold text-stone-700 mb-1">Foto Produk</label>
+              <div class="flex items-center gap-4">
+                <img v-if="productForm.image_url" :src="productForm.image_url" class="w-16 h-16 rounded-xl object-cover border border-rose-100" />
+                <div class="flex-1">
+                  <input type="file" accept="image/*" @change="handleFileUpload" class="w-full px-4 py-2 bg-[#FFFBF8] rounded-xl border border-rose-100 focus:outline-none text-sm text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-rose-50 file:text-[#8B3A3A] hover:file:bg-rose-100" />
+                  <p v-if="isUploading" class="text-xs text-[#8B3A3A] mt-2 font-bold animate-pulse">Sedang mengupload gambar...</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -373,7 +407,7 @@ onMounted(() => {
            <button type="button" @click="showProductModal = false" class="flex-1 py-3.5 bg-white border border-rose-100 text-stone-500 rounded-xl font-bold hover:bg-stone-50 transition">
              Tutup
            </button>
-           <button type="button" @click="saveProduct" class="flex-1 py-3.5 bg-[#8B3A3A] text-white rounded-xl font-bold hover:bg-[#682a2a] shadow-lg shadow-[#8B3A3A]/20 transition">
+           <button type="button" @click="saveProduct" :disabled="isUploading" class="flex-1 py-3.5 bg-[#8B3A3A] text-white rounded-xl font-bold hover:bg-[#682a2a] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[#8B3A3A]/20 transition">
              {{ isEditingProduct ? 'Update Produk' : 'Simpan Produk Baru' }}
            </button>
         </div>

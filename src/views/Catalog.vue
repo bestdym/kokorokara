@@ -1,20 +1,42 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { supabase } from '../supabase'
 
-const categories = ['All', 'Fresh Flowers', 'Roses', 'Artificial Flowers', 'Premium']
+const categories = ref(['All'])
 const activeCategory = ref('All')
 const searchQuery = ref('')
+const isLoading = ref(true)
+const products = ref([])
 
-const products = ref([
-  { id: 1, name: 'Blushing Love', price: 450000, original_price: 500000, category: 'Roses', image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55ef6?w=800&auto=format&fit=crop' },
-  { id: 2, name: 'Sunny Garden', price: 350000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1508611440879-166fa2772590?w=800&auto=format&fit=crop' },
-  { id: 3, name: 'White Elegance', price: 550000, original_price: 650000, category: 'Premium', image: 'https://images.unsplash.com/photo-1457089328109-e5d9f05f0e90?w=800&auto=format&fit=crop' },
-  { id: 4, name: 'Pastel Dream', price: 400000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&auto=format&fit=crop' },
-  { id: 5, name: 'Eternal Beauty', price: 300000, original_price: 350000, category: 'Artificial Flowers', image: 'https://images.unsplash.com/photo-1507311416545-92fee1c585c2?w=800&auto=format&fit=crop' },
-  { id: 6, name: 'Deep Romance', price: 600000, category: 'Roses', image: 'https://images.unsplash.com/photo-1548625361-b54c8ee8618e?w=800&auto=format&fit=crop' },
-  { id: 7, name: 'Morning Sun', price: 250000, category: 'Fresh Flowers', image: 'https://images.unsplash.com/photo-1591886960571-74d43a9d4166?w=800&auto=format&fit=crop' },
-  { id: 8, name: 'Classic Elegance', price: 750000, original_price: 850000, category: 'Premium', image: 'https://images.unsplash.com/photo-1518717871626-d62fba237332?w=800&auto=format&fit=crop' },
-])
+const fetchProducts = async () => {
+  isLoading.value = true
+  try {
+    const { data: prodData, error: prodErr } = await supabase
+      .from('products')
+      .select('*, categories(name)')
+      .eq('is_available', true)
+      .order('id', { ascending: false })
+      
+    if (prodErr) throw prodErr
+    if (prodData) {
+      products.value = prodData.map(p => ({
+        ...p,
+        category: p.categories?.name || 'Unknown'
+      }))
+      
+      const uniqueCats = [...new Set(products.value.map(p => p.category))]
+      categories.value = ['All', ...uniqueCats]
+    }
+  } catch (err) {
+    console.error('Failed to fetch products:', err)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+onMounted(() => {
+  fetchProducts()
+})
 
 const formatPrice = (price) => {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price)
@@ -80,7 +102,8 @@ const filteredProducts = computed(() => {
         <div v-for="product in filteredProducts" :key="product.id" class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
           <!-- Image Section -->
           <div class="relative aspect-square overflow-hidden bg-stone-100 group">
-            <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <img v-if="product.image_url" :src="product.image_url" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div v-else class="w-full h-full flex items-center justify-center bg-stone-100 text-stone-400">Tanpa Foto</div>
             
 
           </div>
@@ -98,7 +121,7 @@ const filteredProducts = computed(() => {
             </div>
             
             <!-- Description -->
-            <p class="text-sm text-stone-500 mb-6 leading-relaxed line-clamp-2">Simple and elegant hand-tied bouquet perfect for bringing warmth and joy.</p>
+            <p class="text-sm text-stone-500 mb-6 leading-relaxed line-clamp-2">{{ product.description || 'Stunning handcrafted bouquet suitable for beautiful moments.' }}</p>
             
             <!-- Action Buttons -->
             <div class="mt-auto flex items-center gap-3">
