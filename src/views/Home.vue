@@ -211,11 +211,11 @@ const formatPrice = (price) => {
                     {{ product.description || 'Dibuat dengan bahan-bahan premium.' }}
                   </p>
 
-                  <div class="mt-auto flex items-center justify-center gap-3">
+                  <div class="mt-auto flex items-center justify-center gap-3 w-full">
                     <!-- Detail button -->
                     <RouterLink
                       to="/catalog"
-                      class="group flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] bg-white border border-rose-200 text-[#B88B8B] hover:bg-rose-50 rounded-full transition-all duration-300 overflow-hidden shadow-sm"
+                      class="group shrink-0 flex items-center justify-center h-[44px] w-[44px] hover:w-[170px] max-w-full bg-white border border-rose-200 text-[#B88B8B] hover:bg-rose-50 rounded-full transition-all duration-300 overflow-hidden shadow-sm"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -238,16 +238,16 @@ const formatPrice = (price) => {
                         />
                       </svg>
                       <span
-                        class="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 overflow-hidden transition-all duration-300 font-semibold text-sm whitespace-nowrap"
+                        class="max-w-0 opacity-0 group-hover:max-w-[120px] group-hover:opacity-100 group-hover:ml-2 overflow-hidden transition-all duration-300 font-semibold text-[13px] whitespace-nowrap"
                       >
-                        See Details
+                        See All Collection
                       </span>
                     </RouterLink>
 
                     <!-- Order Now button -->
                     <RouterLink
                       to="/catalog"
-                      class="group flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 overflow-hidden shadow-sm shadow-[#B88B8B]/30"
+                      class="group shrink-0 flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] max-w-full bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 overflow-hidden shadow-sm shadow-[#B88B8B]/30"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -307,26 +307,26 @@ const formatPrice = (price) => {
     </section>
 
     <!-- Delivery Areas Section -->
-    <section class="py-24 bg-[#FFFBF8] relative z-10">
+    <section class="py-24 bg-transparent relative z-10 border-t border-rose-100/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <!-- Left: Delivery Info -->
           <div>
-            <span class="inline-block py-1 px-3 border border-rose-300 text-rose-500 text-xs font-bold uppercase tracking-wider mb-6">ISLAND-WIDE DELIVERY</span>
+            <span class="inline-block py-1 px-3 border border-[#C1838A] text-[#8B3A3A] text-xs font-bold uppercase tracking-wider mb-6 bg-rose-50/50 rounded-md">ISLAND-WIDE DELIVERY</span>
             <h2 class="text-3xl md:text-4xl font-serif text-[#4A2525] mb-6">Same Day Delivery Across Bali</h2>
-            <p class="text-stone-500 leading-relaxed mb-10 text-lg max-w-lg">
+            <p class="text-stone-500 leading-relaxed mb-10 text-lg max-w-lg font-light">
               From the surf in Uluwatu to the rice paddies of Ubud, we've got you covered. Order before 3 PM and receive your blooms the same day.
             </p>
             <div class="space-y-6">
-              <div class="border-l-2 border-[#8B3A3A] pl-4">
+              <div class="border-l-2 border-[#C1838A] pl-4">
                 <h4 class="font-bold text-[#4A2525] mb-1">Same-Day Delivery</h4>
                 <p class="text-stone-500 text-sm">Order by 3 PM for same-day delivery</p>
               </div>
-              <div class="border-l-2 border-[#8B3A3A] pl-4">
+              <div class="border-l-2 border-[#C1838A] pl-4">
                 <h4 class="font-bold text-[#4A2525] mb-1">Hand-Delivered</h4>
                 <p class="text-stone-500 text-sm">Each bouquet delivered with care</p>
               </div>
-              <div class="border-l-2 border-[#8B3A3A] pl-4">
+              <div class="border-l-2 border-[#C1838A] pl-4">
                 <h4 class="font-bold text-[#4A2525] mb-1">Freshness Guaranteed</h4>
                 <p class="text-stone-500 text-sm">100% fresh flowers or money back</p>
               </div>
@@ -338,35 +338,35 @@ const formatPrice = (price) => {
             <div class="mb-8">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center">
-                  <div class="w-1.5 h-1.5 bg-rose-400 mr-2"></div>
+                  <div class="w-2 h-2 bg-[#8B3A3A] mr-3 rounded-sm"></div>
                   <h4 class="font-bold text-[#4A2525]">Priority Delivery</h4>
                 </div>
-                <span class="text-xs text-stone-400">Same Day</span>
+                <span class="text-xs font-semibold text-stone-400 uppercase tracking-widest">Same Day</span>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="px-4 py-2 bg-[#EE8888] text-white text-sm font-semibold shadow-sm">Canggu</span>
-                <span class="px-4 py-2 bg-[#EE8888] text-white text-sm font-semibold shadow-sm">Seminyak</span>
-                <span class="px-4 py-2 bg-[#EE8888] text-white text-sm font-semibold shadow-sm">Kuta</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Canggu</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Seminyak</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Kuta</span>
               </div>
             </div>
             <div class="mb-10">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center">
-                  <div class="w-1.5 h-1.5 bg-rose-400 mr-2"></div>
+                  <div class="w-2 h-2 bg-[#8B3A3A] mr-3 rounded-sm"></div>
                   <h4 class="font-bold text-[#4A2525]">Extended Coverage</h4>
                 </div>
-                <span class="text-xs text-stone-400">Order by 10 AM</span>
+                <span class="text-xs font-semibold text-stone-400 uppercase tracking-widest">Order by 10 AM</span>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="px-4 py-2 border border-rose-300 text-rose-500 text-sm font-semibold bg-white shadow-sm">Ubud</span>
-                <span class="px-4 py-2 border border-rose-300 text-rose-500 text-sm font-semibold bg-white shadow-sm">Uluwatu</span>
-                <span class="px-4 py-2 border border-rose-300 text-rose-500 text-sm font-semibold bg-white shadow-sm">Sanur</span>
-                <span class="px-4 py-2 border border-rose-300 text-rose-500 text-sm font-semibold bg-white shadow-sm">Jimbaran</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Ubud</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Uluwatu</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Sanur</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Jimbaran</span>
               </div>
             </div>
-            <div class="border-l-2 border-[#EE8888] pl-4">
+            <div class="border-l-2 border-[#C1838A] pl-4">
               <p class="text-sm text-stone-500">
-                <strong class="text-stone-700">Pro Tip:</strong> Don't see your area? Contact us—we often deliver beyond our standard zones!
+                <strong class="text-[#8B3A3A]">Pro Tip:</strong> Don't see your area? Contact us—we often deliver beyond our standard zones!
               </p>
             </div>
           </div>

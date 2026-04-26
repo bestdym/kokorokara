@@ -174,11 +174,11 @@ const filteredProducts = computed(() => {
             </p>
 
             <!-- Action Buttons -->
-            <div class="mt-auto flex items-center justify-center gap-3">
+            <div class="mt-auto flex items-center justify-center gap-3 w-full">
               <!-- Detail button -->
               <button
                 @click="openProductDetail(product)"
-                class="group flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] bg-white border border-rose-200 text-[#B88B8B] hover:bg-rose-50 rounded-full transition-all duration-300 overflow-hidden shadow-sm"
+                class="group flex shrink-0 items-center justify-center h-[44px] w-[44px] hover:w-[130px] max-w-full bg-white border border-rose-200 text-[#B88B8B] hover:bg-rose-50 rounded-full transition-all duration-300 overflow-hidden shadow-sm"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +209,7 @@ const filteredProducts = computed(() => {
 
               <!-- Order Now button -->
               <button
-                class="group flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 overflow-hidden shadow-sm shadow-[#B88B8B]/30"
+                class="group flex shrink-0 items-center justify-center h-[44px] w-[44px] hover:w-[130px] max-w-full bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 overflow-hidden shadow-sm shadow-[#B88B8B]/30"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
