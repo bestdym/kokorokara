@@ -131,14 +131,26 @@ const filteredProducts = computed(() => {
             <p class="text-sm text-stone-500 mb-6 leading-relaxed line-clamp-2">{{ product.description || 'Stunning handcrafted bouquet suitable for beautiful moments.' }}</p>
             
             <!-- Action Buttons -->
-            <div class="mt-auto flex items-center gap-3">
-              <button @click="openProductDetail(product)" class="flex-1 py-2.5 px-4 border border-rose-200 text-[#B88B8B] rounded-full text-sm font-semibold hover:bg-rose-50 transition-colors">
-                See Details
+            <div class="mt-auto flex items-center justify-center gap-3">
+              <!-- Detail button -->
+              <button @click="openProductDetail(product)" class="group flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] bg-white border border-rose-200 text-[#B88B8B] hover:bg-rose-50 rounded-full transition-all duration-300 overflow-hidden shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <span class="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 overflow-hidden transition-all duration-300 font-semibold text-sm whitespace-nowrap">
+                  See Details
+                </span>
               </button>
-              <button class="p-3 bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-colors flex-shrink-0 shadow-sm shadow-[#B88B8B]/30">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+              <!-- Order Now button -->
+              <button class="group flex items-center justify-center h-[44px] w-[44px] hover:w-[130px] bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 overflow-hidden shadow-sm shadow-[#B88B8B]/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
+                <span class="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 overflow-hidden transition-all duration-300 font-semibold text-sm whitespace-nowrap">
+                  Order Now
+                </span>
               </button>
             </div>
           </div>
