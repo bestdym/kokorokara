@@ -4,12 +4,11 @@ import { ref } from 'vue'
 const form = ref({
   name: '',
   email: '',
-  phone: '',
   message: ''
 })
 
 const sendToWhatsApp = () => {
-  const text = `Hello Kokorokara,\n\nName: ${form.value.name}\nEmail: ${form.value.email}\nPhone: ${form.value.phone}\n\nMessage:\n${form.value.message}`
+  const text = `Hello Kokorokara,\n\nName: ${form.value.name}\nEmail: ${form.value.email}\n\nMessage:\n${form.value.message}`
   
   const encoded = encodeURIComponent(text)
   window.open(`https://wa.me/62881037320409?text=${encoded}`, '_blank')
@@ -96,11 +95,6 @@ const sendToWhatsApp = () => {
               <input v-model="form.email" type="email" placeholder="your@email.com" class="w-full px-4 py-3 bg-white rounded-[1rem] border border-[#EAE3D9] focus:outline-none focus:border-[#C0848A] focus:ring-1 focus:ring-[#C0848A] transition-colors" required />
             </div>
 
-            <div>
-              <label class="block text-sm font-semibold text-[#2C1810] mb-2">Phone Number</label>
-              <input v-model="form.phone" type="tel" placeholder="+62 881-0373-20409" class="w-full px-4 py-3 bg-white rounded-[1rem] border border-[#EAE3D9] focus:outline-none focus:border-[#C0848A] focus:ring-1 focus:ring-[#C0848A] transition-colors" required />
-            </div>
-            
             <div>
               <label class="block text-sm font-semibold text-[#2C1810] mb-2">Your Message</label>
               <textarea v-model="form.message" rows="3" placeholder="Tell us about your flower needs..." class="w-full px-4 py-3 bg-white rounded-[1rem] border border-[#EAE3D9] focus:outline-none focus:border-[#C0848A] focus:ring-1 focus:ring-[#C0848A] transition-colors resize-none" required></textarea>
