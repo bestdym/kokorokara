@@ -55,25 +55,10 @@ const isActive = (path) => route.path === path
             <RouterLink to="/catalog" class="bg-[#B88B8B] hover:bg-[#9D6C6C] text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md shadow-[#B88B8B]/30">
               Shop Now
             </RouterLink>
-            
-            <!-- Cart Icon -->
-            <button class="relative p-2 text-stone-700 hover:text-rose-600 transition-colors bg-white/50 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-              <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border border-white">0</span>
-            </button>
           </div>
 
           <!-- Mobile Right Section -->
           <div class="md:hidden flex items-center space-x-2">
-            <!-- Mobile Cart -->
-            <button class="relative p-2 text-stone-700 hover:text-rose-600 transition-colors bg-white/50 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-              <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border border-white">0</span>
-            </button>
             <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="text-stone-800 p-2 bg-white/50 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path v-if="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
