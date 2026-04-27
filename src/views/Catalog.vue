@@ -8,9 +8,13 @@ const searchQuery = ref('')
 const isLoading = ref(true)
 const products = ref([])
 const selectedProduct = ref(null)
+const settings = ref({ whatsapp_number: '6281227419667' })
+
+const personalNote = ref('')
 
 const openProductDetail = (product) => {
   selectedProduct.value = product
+  personalNote.value = ''
 }
 
 const closeProductDetail = () => {
@@ -43,12 +47,45 @@ const fetchProducts = async () => {
   }
 }
 
+const fetchSettings = async () => {
+  try {
+    const { data, error } = await supabase.from('settings').select('*').limit(1).single()
+    if (!error && data) {
+      settings.value = data
+    }
+  } catch (err) {
+    console.error('Failed to fetch settings:', err)
+  }
+}
+
 onMounted(() => {
   fetchProducts()
+  fetchSettings()
 })
 
 const formatPrice = (price) => {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price)
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(price).replace('Rp', 'Rp ')
+}
+
+const checkoutWhatsapp = () => {
+  if (!selectedProduct.value) return
+  const p = selectedProduct.value
+  let total = p.price
+
+  let msg = `Halo Kokorokara, saya ingin memesan:\n`
+  msg += `*Buket*: ${p.name}\n`
+  if (p.flowers) {
+    msg += `*Jenis Bunga*: ${p.flowers}\n`
+  }
+  if (personalNote.value) {
+    msg += `*Pesan Personal*: ${personalNote.value}\n`
+  }
+  msg += `*Total Harga*: ${formatPrice(total)}\n\n`
+  msg += `Apakah bisa dikirim?`
+
+  const encodedMsg = encodeURIComponent(msg)
+  const phone = settings.value.whatsapp_number || '6281227419667'
+  window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank')
 }
 
 const filteredProducts = computed(() => {
@@ -174,46 +211,15 @@ const filteredProducts = computed(() => {
             </p>
 
             <!-- Action Buttons -->
-            <div class="mt-auto flex items-center justify-center gap-3 w-full">
-              <!-- Detail button -->
-              <button
-                @click="openProductDetail(product)"
-                class="group flex shrink-0 items-center justify-center h-[44px] w-[44px] hover:w-[130px] max-w-full bg-white border border-rose-200 text-[#B88B8B] hover:bg-rose-50 rounded-full transition-all duration-300 overflow-hidden shadow-sm"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 shrink-0"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                <span
-                  class="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 overflow-hidden transition-all duration-300 font-semibold text-sm whitespace-nowrap"
-                >
-                  See Details
-                </span>
-              </button>
-
+            <div class="mt-auto flex items-center justify-center w-full pt-2">
               <!-- Order Now button -->
               <button
-                class="group flex shrink-0 items-center justify-center h-[44px] w-[44px] hover:w-[130px] max-w-full bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 overflow-hidden shadow-sm shadow-[#B88B8B]/30"
+                @click="openProductDetail(product)"
+                class="flex items-center justify-center h-[40px] px-6 w-max bg-[#B88B8B] hover:bg-[#9D6C6C] text-white rounded-full transition-all duration-300 shadow-sm shadow-[#B88B8B]/30"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 shrink-0"
+                  class="h-4 w-4 mr-2"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -225,9 +231,7 @@ const filteredProducts = computed(() => {
                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                   />
                 </svg>
-                <span
-                  class="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-2 overflow-hidden transition-all duration-300 font-semibold text-sm whitespace-nowrap"
-                >
+                <span class="font-semibold text-sm">
                   Order Now
                 </span>
               </button>
@@ -317,7 +321,7 @@ const filteredProducts = computed(() => {
 
         <!-- Right: Information -->
         <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col overflow-y-auto">
-          <div class="mb-6">
+          <div class="mb-4 border-b border-rose-100 pb-6">
             <span
               class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold mb-4 inline-block tracking-wide uppercase"
               >{{ selectedProduct.category }}</span
@@ -336,17 +340,66 @@ const filteredProducts = computed(() => {
             </div>
           </div>
 
-          <div class="mb-8 flex-1">
-            <h4 class="text-sm font-bold text-stone-700 mb-2">Deskripsi Produk</h4>
+          <div class="mb-6 flex-1">
             <p class="text-stone-500 leading-relaxed text-sm whitespace-pre-line">
               {{ selectedProduct.description || 'Tidak ada deskripsi rinci untuk produk ini.' }}
             </p>
           </div>
 
+          <!-- Delivery Info -->
+          <div class="mb-6 border-t border-rose-100 pt-6">
+            <div class="mb-5">
+              <div class="flex items-center mb-3">
+                <div class="w-2 h-2 bg-[#8B3A3A] mr-3 rounded-full"></div>
+                <h4 class="font-bold text-[#4A2525] text-sm">Priority Delivery</h4>
+              </div>
+              <div class="flex flex-wrap gap-2 ml-5">
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Kuta</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Seminyak</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Canggu</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center mb-3">
+                <div class="w-2 h-2 bg-[#8B3A3A] mr-3 rounded-full"></div>
+                <h4 class="font-bold text-[#4A2525] text-sm">Extended Coverage</h4>
+              </div>
+              <div class="flex flex-wrap gap-2 ml-5">
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Sanur</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Jimbaran</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Ubud</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Uluwatu</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flower Types -->
+          <div v-if="selectedProduct.flowers" class="mb-6 border-b border-rose-100 pb-6">
+            <h4 class="text-[11px] font-bold text-[#8B3A3A] mb-3 uppercase tracking-wider">FLOWER TYPES</h4>
+            <div class="flex flex-wrap gap-2">
+              <span v-for="flower in selectedProduct.flowers.split(',').map(f => f.trim())" :key="flower" class="px-2 py-1 bg-rose-50 text-[#8B3A3A] text-[11px] font-bold border border-rose-100 rounded-sm">
+                {{ flower }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Personal Note -->
+          <div class="mb-6 border-t border-rose-100 pt-6">
+            <h4 class="text-[11px] font-bold text-[#8B3A3A] mb-1 uppercase tracking-wider">PERSONAL NOTE</h4>
+            <p class="text-[11px] text-stone-500 mb-2">We will print your message on a cute card for free.</p>
+            <textarea
+              v-model="personalNote"
+              rows="3"
+              placeholder="Write your message here... (We'll handwrite it on the card)"
+              class="w-full p-3 border border-rose-200 bg-white text-sm rounded-xl focus:outline-none focus:border-[#8B3A3A] focus:ring-1 focus:ring-[#8B3A3A] resize-none"
+            ></textarea>
+          </div>
+
           <!-- Checkout Button -->
-          <div class="mt-auto pt-6 border-t border-rose-50 flex gap-4">
+          <div class="mt-auto pt-4 flex flex-col gap-2">
             <button
-              class="flex-1 bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 rounded-xl font-bold transition-all shadow-lg flex justify-center items-center gap-2"
+              @click="checkoutWhatsapp"
+              class="w-full bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 rounded-xl font-bold tracking-wider text-sm transition-all shadow-lg shadow-[#8B3A3A]/20 flex justify-center items-center gap-2 uppercase"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -362,7 +415,7 @@ const filteredProducts = computed(() => {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              Order Now
+              Order Now Through WhatsApp
             </button>
           </div>
         </div>

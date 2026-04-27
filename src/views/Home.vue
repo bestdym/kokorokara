@@ -312,10 +312,16 @@ const formatPrice = (price) => {
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <!-- Left: Delivery Info -->
           <div>
-            <span class="inline-block py-1 px-3 border border-[#C1838A] text-[#8B3A3A] text-xs font-bold uppercase tracking-wider mb-6 bg-rose-50/50 rounded-md">ISLAND-WIDE DELIVERY</span>
-            <h2 class="text-3xl md:text-4xl font-serif text-[#4A2525] mb-6">Same Day Delivery Across Bali</h2>
+            <span
+              class="inline-block py-1 px-3 border border-[#C1838A] text-[#8B3A3A] text-xs font-bold uppercase tracking-wider mb-6 bg-rose-50/50 rounded-md"
+              >ISLAND-WIDE DELIVERY</span
+            >
+            <h2 class="text-3xl md:text-4xl font-serif text-[#4A2525] mb-6">
+              Same Day Delivery Across Bali
+            </h2>
             <p class="text-stone-500 leading-relaxed mb-10 text-lg max-w-lg font-light">
-              From the surf in Uluwatu to the rice paddies of Ubud, we've got you covered. Order before 3 PM and receive your blooms the same day.
+              From the surf in Uluwatu to the rice paddies of Ubud, we've got you covered. Order
+              before 3 PM and receive your blooms the same day.
             </p>
             <div class="space-y-6">
               <div class="border-l-2 border-[#C1838A] pl-4">
@@ -341,12 +347,23 @@ const formatPrice = (price) => {
                   <div class="w-2 h-2 bg-[#8B3A3A] mr-3 rounded-sm"></div>
                   <h4 class="font-bold text-[#4A2525]">Priority Delivery</h4>
                 </div>
-                <span class="text-xs font-semibold text-stone-400 uppercase tracking-widest">Same Day</span>
+                <span class="text-xs font-semibold text-stone-400 uppercase tracking-widest"
+                  >Same Day</span
+                >
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Canggu</span>
-                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Seminyak</span>
-                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Kuta</span>
+                <span
+                  class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm"
+                  >Kuta</span
+                >
+                <span
+                  class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm"
+                  >Seminyak</span
+                >
+                <span
+                  class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm"
+                  >Canggu</span
+                >
               </div>
             </div>
             <div class="mb-10">
@@ -355,18 +372,33 @@ const formatPrice = (price) => {
                   <div class="w-2 h-2 bg-[#8B3A3A] mr-3 rounded-sm"></div>
                   <h4 class="font-bold text-[#4A2525]">Extended Coverage</h4>
                 </div>
-                <span class="text-xs font-semibold text-stone-400 uppercase tracking-widest">Order by 10 AM</span>
+                <span class="text-xs font-semibold text-stone-400 uppercase tracking-widest"
+                  >Order by 9 AM</span
+                >
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Ubud</span>
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Uluwatu</span>
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Sanur</span>
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Jimbaran</span>
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Sanur</span
+                >
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Jimbaran</span
+                >
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Ubud</span
+                >
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Uluwatu
+                </span>
               </div>
             </div>
             <div class="border-l-2 border-[#C1838A] pl-4">
               <p class="text-sm text-stone-500">
-                <strong class="text-[#8B3A3A]">Pro Tip:</strong> Don't see your area? Contact us—we often deliver beyond our standard zones!
+                <strong class="text-[#8B3A3A]">Pro Tip:</strong> Don't see your area? Contact us—we
+                often deliver beyond our standard zones!
               </p>
             </div>
           </div>
