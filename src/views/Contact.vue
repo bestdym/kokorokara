@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { supabase } from '../supabase'
 
 const form = ref({
   name: '',
@@ -7,11 +8,29 @@ const form = ref({
   message: ''
 })
 
+const settings = ref({ whatsapp_number: '62881037320409' })
+
+const fetchSettings = async () => {
+  try {
+    const { data, error } = await supabase.from('settings').select('*').limit(1).single()
+    if (!error && data) {
+      settings.value = data
+    }
+  } catch (err) {
+    console.error('Failed to fetch settings:', err)
+  }
+}
+
+onMounted(() => {
+  fetchSettings()
+})
+
 const sendToWhatsApp = () => {
   const text = `Hello Kokorokara,\n\nName: ${form.value.name}\nEmail: ${form.value.email}\n\nMessage:\n${form.value.message}`
   
   const encoded = encodeURIComponent(text)
-  window.open(`https://wa.me/62881037320409?text=${encoded}`, '_blank')
+  const phone = settings.value.whatsapp_number || '62881037320409'
+  window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank')
 }
 </script>
 
