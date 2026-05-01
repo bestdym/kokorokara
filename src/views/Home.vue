@@ -103,7 +103,7 @@ const formatPrice = (price) => {
           <span
             class="inline-block py-1 px-3 rounded-full bg-rose-200 text-rose-900 text-sm font-semibold tracking-wider mb-6 border border-rose-300"
           >
-            PREMIUM FLORIST QUALITY
+            PREMIUM FLOWER QUALITY
           </span>
           <h1 class="text-5xl md:text-6xl font-serif text-[#4A2525] mb-6 leading-tight">
             <!-- Maroon/Dark Brown text -->
@@ -276,9 +276,7 @@ const formatPrice = (price) => {
                           d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                         />
                       </svg>
-                      <span class="font-semibold text-sm">
-                        Order Now
-                      </span>
+                      <span class="font-semibold text-sm"> Order Now </span>
                     </button>
                   </div>
                 </div>
@@ -471,7 +469,9 @@ const formatPrice = (price) => {
           <div class="mb-4 border-b border-rose-100 pb-6">
             <span
               class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold mb-4 inline-block tracking-wide uppercase"
-              >{{ homeCategories.find((c) => c.id === selectedProduct.category_id)?.name || 'Kategori' }}</span
+              >{{
+                homeCategories.find((c) => c.id === selectedProduct.category_id)?.name || 'Kategori'
+              }}</span
             >
             <h2 class="text-3xl font-serif text-[#4A2525] leading-tight font-semibold mb-2">
               {{ selectedProduct.name }}
@@ -501,9 +501,18 @@ const formatPrice = (price) => {
                 <h4 class="font-bold text-[#4A2525] text-sm">Priority Delivery</h4>
               </div>
               <div class="flex flex-wrap gap-2 ml-5">
-                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Kuta</span>
-                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Seminyak</span>
-                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Canggu</span>
+                <span
+                  class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm"
+                  >Kuta</span
+                >
+                <span
+                  class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm"
+                  >Seminyak</span
+                >
+                <span
+                  class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm"
+                  >Canggu</span
+                >
               </div>
             </div>
             <div>
@@ -512,19 +521,37 @@ const formatPrice = (price) => {
                 <h4 class="font-bold text-[#4A2525] text-sm">Extended Coverage</h4>
               </div>
               <div class="flex flex-wrap gap-2 ml-5">
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Sanur</span>
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Jimbaran</span>
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Ubud</span>
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Uluwatu</span>
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Sanur</span
+                >
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Jimbaran</span
+                >
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Ubud</span
+                >
+                <span
+                  class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm"
+                  >Uluwatu</span
+                >
               </div>
             </div>
           </div>
 
           <!-- Flower Types -->
           <div v-if="selectedProduct.flowers" class="mb-6 border-b border-rose-100 pb-6">
-            <h4 class="text-[11px] font-bold text-[#8B3A3A] mb-3 uppercase tracking-wider">FLOWER TYPES</h4>
+            <h4 class="text-[11px] font-bold text-[#8B3A3A] mb-3 uppercase tracking-wider">
+              FLOWER TYPES
+            </h4>
             <div class="flex flex-wrap gap-2">
-              <span v-for="flower in selectedProduct.flowers.split(',').map(f => f.trim())" :key="flower" class="px-2 py-1 bg-rose-50 text-[#8B3A3A] text-[11px] font-bold border border-rose-100 rounded-sm">
+              <span
+                v-for="flower in selectedProduct.flowers.split(',').map((f) => f.trim())"
+                :key="flower"
+                class="px-2 py-1 bg-rose-50 text-[#8B3A3A] text-[11px] font-bold border border-rose-100 rounded-sm"
+              >
                 {{ flower }}
               </span>
             </div>
@@ -532,8 +559,12 @@ const formatPrice = (price) => {
 
           <!-- Personal Note -->
           <div class="mb-6 border-t border-rose-100 pt-6">
-            <h4 class="text-[11px] font-bold text-[#8B3A3A] mb-1 uppercase tracking-wider">PERSONAL NOTE</h4>
-            <p class="text-[11px] text-stone-500 mb-2">We will print your message on a cute card for free.</p>
+            <h4 class="text-[11px] font-bold text-[#8B3A3A] mb-1 uppercase tracking-wider">
+              PERSONAL NOTE
+            </h4>
+            <p class="text-[11px] text-stone-500 mb-2">
+              We will print your message on a cute card for free.
+            </p>
             <textarea
               v-model="personalNote"
               rows="3"
