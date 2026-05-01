@@ -357,6 +357,7 @@ const filteredProducts = computed(() => {
                 <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Kuta</span>
                 <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Seminyak</span>
                 <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Canggu</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-sm font-semibold rounded-lg shadow-sm">Sanur</span>
               </div>
             </div>
             <div>
@@ -365,7 +366,6 @@ const filteredProducts = computed(() => {
                 <h4 class="font-bold text-[#4A2525] text-sm">Extended Coverage</h4>
               </div>
               <div class="flex flex-wrap gap-2 ml-5">
-                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Sanur</span>
                 <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Jimbaran</span>
                 <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Ubud</span>
                 <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-white/50 rounded-lg shadow-sm">Uluwatu</span>
