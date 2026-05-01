@@ -72,16 +72,16 @@ const checkoutWhatsapp = () => {
   const p = selectedProduct.value
   let total = p.price
 
-  let msg = `Halo Kokorokara, saya ingin memesan:\n`
-  msg += `*Buket*: ${p.name}\n`
+  let msg = `Hello Kokorokara, I would like to order:\n`
+  msg += `*Bouquet*: ${p.name}\n`
   if (p.flowers) {
-    msg += `*Jenis Bunga*: ${p.flowers}\n`
+    msg += `*Flower Type*: ${p.flowers}\n`
   }
   if (personalNote.value) {
-    msg += `*Pesan Personal*: ${personalNote.value}\n`
+    msg += `*Personal Note*: ${personalNote.value}\n`
   }
-  msg += `*Total Harga*: ${formatPrice(total)}\n\n`
-  msg += `Apakah bisa dikirim?`
+  msg += `*Total Price*: ${formatPrice(total)}\n\n`
+  msg += `Can this be delivered?`
 
   const encodedMsg = encodeURIComponent(msg)
   const phone = settings.value.whatsapp_number || '6281227419667'
@@ -182,7 +182,7 @@ const filteredProducts = computed(() => {
               v-else
               class="w-full h-full flex items-center justify-center bg-stone-100 text-stone-400"
             >
-              Tanpa Foto
+              No Photo
             </div>
           </div>
 
@@ -308,14 +308,14 @@ const filteredProducts = computed(() => {
             class="w-full h-full object-cover"
           />
           <div v-else class="w-full h-full flex items-center justify-center text-stone-400">
-            Tanpa Foto
+            No Photo
           </div>
           <!-- PO Tag inside image -->
           <span
             v-if="selectedProduct.is_preorder"
             class="absolute top-4 left-4 px-3 py-1 bg-yellow-100/90 backdrop-blur text-yellow-800 rounded-lg text-xs font-bold border border-yellow-200/50 shadow-sm"
           >
-            Tersedia Pre-Order ({{ selectedProduct.estimated_days }} Hari)
+            Available for Pre-Order ({{ selectedProduct.estimated_days }} Days)
           </span>
         </div>
 
@@ -342,7 +342,7 @@ const filteredProducts = computed(() => {
 
           <div class="mb-6 flex-1">
             <p class="text-stone-500 leading-relaxed text-sm whitespace-pre-line">
-              {{ selectedProduct.description || 'Tidak ada deskripsi rinci untuk produk ini.' }}
+              {{ selectedProduct.description || 'No detailed description available for this product.' }}
             </p>
           </div>
 

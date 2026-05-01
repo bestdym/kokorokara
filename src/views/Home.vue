@@ -67,16 +67,16 @@ const checkoutWhatsapp = () => {
   const p = selectedProduct.value
   let total = p.price
 
-  let msg = `Halo Kokorokara, saya ingin memesan:\n`
-  msg += `*Buket*: ${p.name}\n`
+  let msg = `Hello Kokorokara, I would like to order:\n`
+  msg += `*Bouquet*: ${p.name}\n`
   if (p.flowers) {
-    msg += `*Jenis Bunga*: ${p.flowers}\n`
+    msg += `*Flower Type*: ${p.flowers}\n`
   }
   if (personalNote.value) {
-    msg += `*Pesan Personal*: ${personalNote.value}\n`
+    msg += `*Personal Note*: ${personalNote.value}\n`
   }
-  msg += `*Total Harga*: ${formatPrice(total)}\n\n`
-  msg += `Apakah bisa dikirim?`
+  msg += `*Total Price*: ${formatPrice(total)}\n\n`
+  msg += `Can this be delivered?`
 
   const encodedMsg = encodeURIComponent(msg)
   const phone = settings.value.whatsapp_number || '6281227419667'
@@ -184,12 +184,12 @@ const formatPrice = (price) => {
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          Memuat koleksi terbaik...
+          Loading best collections...
         </div>
 
         <template v-else>
           <div v-if="homeCategories.length === 0" class="text-center py-20 text-stone-500">
-            Koleksi sedang diperbarui. Silakan kunjungi halaman katalog kami!
+            Collections are being updated. Please visit our catalog page!
           </div>
 
           <div v-for="category in homeCategories" :key="category.id">
@@ -222,7 +222,7 @@ const formatPrice = (price) => {
                     v-else
                     class="w-full h-full flex items-center justify-center bg-stone-100 text-stone-400"
                   >
-                    Tanpa Foto
+                    No Photo
                   </div>
                 </div>
 
@@ -253,7 +253,7 @@ const formatPrice = (price) => {
                   </p>
 
                   <p class="text-sm text-stone-500 mb-6 leading-relaxed line-clamp-2">
-                    {{ product.description || 'Dibuat dengan bahan-bahan premium.' }}
+                    {{ product.description || 'Crafted with premium materials.' }}
                   </p>
 
                   <div class="mt-auto flex items-center justify-center w-full pt-2">
@@ -287,7 +287,7 @@ const formatPrice = (price) => {
               v-if="homeProducts.filter((p) => p.category_id === category.id).length === 0"
               class="text-center text-stone-400 py-10"
             >
-              Belum ada produk unggulan di kategori ini.
+              No featured products in this category yet.
             </div>
 
             <div class="text-center mt-12">
@@ -383,14 +383,14 @@ const formatPrice = (price) => {
             class="w-full h-full object-cover"
           />
           <div v-else class="w-full h-full flex items-center justify-center text-stone-400">
-            Tanpa Foto
+            No Photo
           </div>
           <!-- PO Tag inside image -->
           <span
             v-if="selectedProduct.is_preorder"
             class="absolute top-4 left-4 px-3 py-1 bg-yellow-100/90 backdrop-blur text-yellow-800 rounded-lg text-xs font-bold border border-yellow-200/50 shadow-sm"
           >
-            Tersedia Pre-Order ({{ selectedProduct.estimated_days }} Hari)
+            Available for Pre-Order ({{ selectedProduct.estimated_days }} Days)
           </span>
         </div>
 
@@ -400,7 +400,7 @@ const formatPrice = (price) => {
             <span
               class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold mb-4 inline-block tracking-wide uppercase"
               >{{
-                homeCategories.find((c) => c.id === selectedProduct.category_id)?.name || 'Kategori'
+                homeCategories.find((c) => c.id === selectedProduct.category_id)?.name || 'Category'
               }}</span
             >
             <h2 class="text-3xl font-serif text-[#4A2525] leading-tight font-semibold mb-2">
@@ -419,7 +419,7 @@ const formatPrice = (price) => {
 
           <div class="mb-6 flex-1">
             <p class="text-stone-500 leading-relaxed text-sm whitespace-pre-line">
-              {{ selectedProduct.description || 'Tidak ada deskripsi rinci untuk produk ini.' }}
+              {{ selectedProduct.description || 'No detailed description available for this product.' }}
             </p>
           </div>
 
