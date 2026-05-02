@@ -109,7 +109,7 @@ const formatPrice = (price) => {
             <!-- Maroon/Dark Brown text -->
             Let the Flowers <br />
             <span class="text-rose-600 italic text-4xl md:text-[3.5rem] mt-2 inline-block"
-              >tells Story</span
+              >tells a Story</span
             >
           </h1>
           <p
@@ -326,9 +326,13 @@ const formatPrice = (price) => {
           Swift & Reliable Delivery Throughout Bali
         </h2>
         <p class="text-stone-500 leading-relaxed mb-12 text-lg mx-auto font-light max-w-2xl">
-          From the beautiful beaches of Uluwatu to the serene landscapes of Ubud, we ensure your flowers arrive in perfect condition. Place your order before 3 PM to enjoy prompt same-day delivery.
+          From the beautiful beaches of Uluwatu to the serene landscapes of Ubud, we ensure your
+          flowers arrive in perfect condition. Place your order before 3 PM to enjoy prompt same-day
+          delivery.
         </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left bg-white/50 backdrop-blur-sm p-8 rounded-3xl border border-rose-50 shadow-sm">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left bg-white/50 backdrop-blur-sm p-8 rounded-3xl border border-rose-50 shadow-sm"
+        >
           <div class="border-l-2 border-[#C1838A] pl-5">
             <h4 class="font-bold text-[#4A2525] mb-2 text-lg">Same-Day Delivery</h4>
             <p class="text-stone-500">Order by 3 PM for same-day delivery</p>
@@ -419,7 +423,9 @@ const formatPrice = (price) => {
 
           <div class="mb-6 flex-1">
             <p class="text-stone-500 leading-relaxed text-sm whitespace-pre-line">
-              {{ selectedProduct.description || 'No detailed description available for this product.' }}
+              {{
+                selectedProduct.description || 'No detailed description available for this product.'
+              }}
             </p>
           </div>
 
