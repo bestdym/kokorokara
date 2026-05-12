@@ -296,7 +296,7 @@ const filteredProducts = computed(() => {
     <!-- Product Detail Modal Overlay -->
     <div
       v-if="selectedProduct"
-      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-6 md:p-10"
     >
       <div
         class="bg-white rounded-[2rem] w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-rose-100 relative"
@@ -343,7 +343,7 @@ const filteredProducts = computed(() => {
         </div>
 
         <!-- Right: Information -->
-        <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col overflow-y-auto">
+        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col overflow-y-auto">
           <div class="mb-4 border-b border-rose-100 pb-6">
             <span
               class="px-3 py-1 bg-rose-50 border border-rose-100 text-rose-800 rounded-lg text-xs font-bold mb-4 inline-block tracking-wide uppercase"
@@ -419,26 +419,28 @@ const filteredProducts = computed(() => {
           </div>
 
           <!-- Checkout Button -->
-          <div class="mt-auto pt-4 flex flex-col gap-2">
+          <div class="mt-auto pt-4 mb-4 md:mb-0 shrink-0 flex flex-col gap-2">
             <button
               @click="checkoutWhatsapp"
-              class="w-full bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 rounded-xl font-bold tracking-wider text-sm transition-all shadow-lg shadow-[#8B3A3A]/20 flex justify-center items-center gap-2 uppercase"
+              class="w-full bg-[#8B3A3A] hover:bg-[#682a2a] text-white py-4 px-4 rounded-xl font-bold tracking-wider text-xs sm:text-sm transition-all shadow-lg shadow-[#8B3A3A]/20 uppercase text-center"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              Order Now Through WhatsApp
+              <span class="inline-block align-middle leading-tight">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 inline-block mr-2 -mt-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+                Order Now Through WhatsApp
+              </span>
             </button>
           </div>
         </div>
