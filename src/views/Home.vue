@@ -327,7 +327,7 @@ const formatPrice = (price) => {
         </h2>
         <p class="text-stone-500 leading-relaxed mb-12 text-lg mx-auto font-light max-w-2xl">
           From the beautiful beaches of Uluwatu to the serene landscapes of Ubud, we ensure your
-          flowers arrive in perfect condition. Place your order before 3 PM to enjoy prompt same-day
+          flowers arrive in perfect condition. Place your order before 1 PM to enjoy prompt same-day
           delivery.
         </p>
         <div
@@ -335,7 +335,7 @@ const formatPrice = (price) => {
         >
           <div class="border-l-2 border-[#C1838A] pl-5">
             <h4 class="font-bold text-[#4A2525] mb-2 text-lg">Same-Day Delivery</h4>
-            <p class="text-stone-500">Order by 3 PM for same-day delivery</p>
+            <p class="text-stone-500">Order by 1 PM for same-day delivery</p>
           </div>
           <div class="border-l-2 border-[#C1838A] pl-5">
             <h4 class="font-bold text-[#4A2525] mb-2 text-lg">Hand-Delivered</h4>

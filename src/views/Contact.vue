@@ -1,37 +1,4 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { supabase } from '../supabase'
-
-const form = ref({
-  name: '',
-  email: '',
-  message: ''
-})
-
-const settings = ref({ whatsapp_number: '62881037320409' })
-
-const fetchSettings = async () => {
-  try {
-    const { data, error } = await supabase.from('settings').select('*').limit(1).single()
-    if (!error && data) {
-      settings.value = data
-    }
-  } catch (err) {
-    console.error('Failed to fetch settings:', err)
-  }
-}
-
-onMounted(() => {
-  fetchSettings()
-})
-
-const sendToWhatsApp = () => {
-  const text = `Hello Kokorokara,\n\nName: ${form.value.name}\nEmail: ${form.value.email}\n\nMessage:\n${form.value.message}`
-  
-  const encoded = encodeURIComponent(text)
-  const phone = settings.value.whatsapp_number || '62881037320409'
-  window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank')
-}
 </script>
 
 <template>
@@ -98,87 +65,50 @@ const sendToWhatsApp = () => {
           </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="bg-[#FDFBF7] p-8 md:p-10 rounded-[2rem] shadow-sm border border-[#EAE3D9]">
-          <h3 class="text-3xl font-serif text-[#2C1810] mb-2">Send Us a Message</h3>
-          <p class="text-stone-600 mb-8">Fill out the form below and we'll get back to you shortly.</p>
+        <!-- Delivery Areas Section -->
+        <div class="bg-white/80 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-[#8B3A3A]/10 h-full flex flex-col">
+          <h3 class="text-3xl font-serif text-[#4A2525] mb-8">Delivery Areas</h3>
           
-          <form class="space-y-6" @submit.prevent="sendToWhatsApp">
-            <div>
-              <label class="block text-sm font-semibold text-[#2C1810] mb-2">Full Name</label>
-              <input v-model="form.name" type="text" placeholder="Your name" class="w-full px-4 py-3 bg-white rounded-[1rem] border border-[#EAE3D9] focus:outline-none focus:border-[#C0848A] focus:ring-1 focus:ring-[#C0848A] transition-colors" required />
-            </div>
-            
-            <div>
-              <label class="block text-sm font-semibold text-[#2C1810] mb-2">Email Address</label>
-              <input v-model="form.email" type="email" placeholder="your@email.com" class="w-full px-4 py-3 bg-white rounded-[1rem] border border-[#EAE3D9] focus:outline-none focus:border-[#C0848A] focus:ring-1 focus:ring-[#C0848A] transition-colors" required />
-            </div>
-
-            <div>
-              <label class="block text-sm font-semibold text-[#2C1810] mb-2">Your Message</label>
-              <textarea v-model="form.message" rows="3" placeholder="Tell us about your flower needs..." class="w-full px-4 py-3 bg-white rounded-[1rem] border border-[#EAE3D9] focus:outline-none focus:border-[#C0848A] focus:ring-1 focus:ring-[#C0848A] transition-colors resize-none" required></textarea>
-            </div>
-            
-            <div class="pt-2">
-              <button type="submit" class="w-full bg-[#C1838A] hover:bg-[#ad7479] text-white py-4 rounded-[1.5rem] font-semibold transition-colors flex items-center justify-center space-x-2 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send">
-                  <path d="m22 2-7 20-4-9-9-4Z"/>
-                  <path d="M22 2 11 13"/>
-                </svg>
-                <span>Send Message</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Delivery Areas Section -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-      <div class="bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-[#8B3A3A]/10">
-        <div class="flex flex-col items-center justify-center text-center">
-            <h3 class="text-3xl md:text-4xl font-serif text-[#4A2525] mb-10 font-bold">Delivery Areas</h3>
-            
-            <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-              <!-- Priority Delivery -->
-              <div class="bg-white p-8 rounded-3xl shadow-sm border border-rose-50">
-                <div class="flex items-center justify-between mb-8 border-b border-rose-100 pb-4">
-                  <div class="flex items-center">
-                    <div class="w-3 h-3 bg-[#8B3A3A] mr-4 rounded-sm"></div>
-                    <h4 class="text-xl font-bold text-[#4A2525]">Priority Delivery</h4>
-                  </div>
-                  <span class="text-xs font-bold text-stone-500 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-md">Same Day</span>
+          <div class="flex flex-col gap-8 flex-1">
+            <!-- Priority Delivery -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-rose-50 flex-1">
+              <div class="flex items-center justify-between mb-6 border-b border-rose-100 pb-3">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-[#8B3A3A] mr-3 rounded-sm"></div>
+                  <h4 class="text-lg font-bold text-[#4A2525]">Priority Delivery</h4>
                 </div>
-                <div class="flex flex-wrap gap-3">
-                  <span class="px-5 py-2.5 bg-[#C1838A] text-white text-sm font-semibold rounded-xl shadow-sm">Canggu</span>
-                  <span class="px-5 py-2.5 bg-[#C1838A] text-white text-sm font-semibold rounded-xl shadow-sm">Seminyak</span>
-                  <span class="px-5 py-2.5 bg-[#C1838A] text-white text-sm font-semibold rounded-xl shadow-sm">Kuta</span>
-                  <span class="px-5 py-2.5 bg-[#C1838A] text-white text-sm font-semibold rounded-xl shadow-sm">Sanur</span>
-                </div>
+                <span class="text-[10px] font-bold text-stone-500 uppercase tracking-widest bg-stone-100 px-2 py-1 rounded-md">Same Day</span>
               </div>
-              
-              <!-- Extended Coverage -->
-              <div class="bg-white p-8 rounded-3xl shadow-sm border border-rose-50">
-                <div class="flex items-center justify-between mb-8 border-b border-rose-100 pb-4">
-                  <div class="flex items-center">
-                    <div class="w-3 h-3 bg-[#8B3A3A] mr-4 rounded-sm"></div>
-                    <h4 class="text-xl font-bold text-[#4A2525]">Extended Coverage</h4>
-                  </div>
-                  <span class="text-xs font-bold text-stone-500 uppercase tracking-widest bg-stone-100 px-3 py-1 rounded-md">Order by 10 AM</span>
-                </div>
-                <div class="flex flex-wrap gap-3">
-                  <span class="px-5 py-2.5 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-rose-50/50 rounded-xl shadow-sm">Ubud</span>
-                  <span class="px-5 py-2.5 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-rose-50/50 rounded-xl shadow-sm">Uluwatu</span>
-                  <span class="px-5 py-2.5 border border-[#C1838A] text-[#8B3A3A] text-sm font-semibold bg-rose-50/50 rounded-xl shadow-sm">Jimbaran</span>
-                </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-xs font-semibold rounded-xl shadow-sm">Canggu</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-xs font-semibold rounded-xl shadow-sm">Seminyak</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-xs font-semibold rounded-xl shadow-sm">Kuta</span>
+                <span class="px-4 py-2 bg-[#C1838A] text-white text-xs font-semibold rounded-xl shadow-sm">Sanur</span>
               </div>
             </div>
-
-            <div class="mt-12 bg-rose-50 border border-rose-100 py-4 px-8 rounded-full inline-block">
-              <p class="text-base text-stone-600">
-                <strong class="text-[#8B3A3A]">Pro Tip:</strong> Don't see your area? Contact us—we often deliver beyond our standard zones!
-              </p>
+            
+            <!-- Extended Coverage -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-rose-50 flex-1">
+              <div class="flex items-center justify-between mb-6 border-b border-rose-100 pb-3">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-[#8B3A3A] mr-3 rounded-sm"></div>
+                  <h4 class="text-lg font-bold text-[#4A2525]">Extended Coverage</h4>
+                </div>
+                <span class="text-[10px] font-bold text-stone-500 uppercase tracking-widest bg-stone-100 px-2 py-1 rounded-md">Order by 10 AM</span>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-xs font-semibold bg-rose-50/50 rounded-xl shadow-sm">Ubud</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-xs font-semibold bg-rose-50/50 rounded-xl shadow-sm">Uluwatu</span>
+                <span class="px-4 py-2 border border-[#C1838A] text-[#8B3A3A] text-xs font-semibold bg-rose-50/50 rounded-xl shadow-sm">Jimbaran</span>
+              </div>
             </div>
+          </div>
+
+          <div class="mt-6 bg-rose-50 border border-rose-100 py-3 px-6 rounded-2xl text-center">
+            <p class="text-sm text-stone-600">
+              <strong class="text-[#8B3A3A]">Pro Tip:</strong> Don't see your area? Contact us—we often deliver beyond our standard zones!
+            </p>
+          </div>
         </div>
       </div>
     </div>
