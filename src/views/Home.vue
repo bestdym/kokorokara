@@ -103,7 +103,7 @@ const formatPrice = (price) => {
           <span
             class="inline-block py-1 px-3 rounded-full bg-rose-200 text-rose-900 text-sm font-semibold tracking-wider mb-6 border border-rose-300"
           >
-            PREMIUM FLOWER QUALITY
+            PREMIUM FLOWERS QUALITY
           </span>
           <h1 class="text-5xl md:text-6xl font-serif text-[#4A2525] mb-6 leading-tight">
             <!-- Maroon/Dark Brown text -->
