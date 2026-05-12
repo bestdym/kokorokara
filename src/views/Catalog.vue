@@ -5,6 +5,7 @@ import { supabase } from '../supabase'
 const categories = ref(['All'])
 const activeCategory = ref('All')
 const searchQuery = ref('')
+const sortBy = ref('latest')
 const isLoading = ref(true)
 const products = ref([])
 const selectedProduct = ref(null)
@@ -100,6 +101,10 @@ const filteredProducts = computed(() => {
       product.category.toLowerCase().includes(searchQuery.value.toLowerCase())
 
     return matchCategory && matchSearch
+  }).sort((a, b) => {
+    if (sortBy.value === 'price_asc') return a.price - b.price
+    if (sortBy.value === 'price_desc') return b.price - a.price
+    return b.id - a.id // default (latest)
   })
 })
 </script>
@@ -116,9 +121,10 @@ const filteredProducts = computed(() => {
       </div>
 
       <!-- Categories & Search Bar -->
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12 w-full">
+        
         <!-- Search Bar -->
-        <div class="w-full md:w-[26rem] relative shrink-0">
+        <div class="w-full lg:flex-1 relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 absolute left-4 top-1/2 -translate-y-1/2 text-stone-400"
@@ -139,21 +145,38 @@ const filteredProducts = computed(() => {
           />
         </div>
 
-        <!-- Category Buttons -->
-        <div class="flex flex-wrap items-center justify-end gap-3 flex-1">
-          <button
-            v-for="cat in categories"
-            :key="cat"
-            @click="activeCategory = cat"
-            :class="[
-              'px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300',
-              activeCategory === cat
-                ? 'bg-[#8B3A3A] text-white shadow-md'
-                : 'bg-stone-50 text-stone-600 border border-rose-100 hover:bg-rose-50 hover:text-rose-600',
-            ]"
-          >
-            {{ cat }}
-          </button>
+        <!-- Filters: Category & Sort -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0">
+          
+          <!-- Category Dropdown -->
+          <div class="relative w-full sm:min-w-[200px]">
+            <select
+              v-model="activeCategory"
+              class="w-full appearance-none pl-5 pr-10 py-3 bg-white rounded-full border border-rose-200 focus:outline-none focus:border-[#8B3A3A] focus:ring-1 focus:ring-[#8B3A3A] shadow-sm text-stone-600 text-sm font-semibold cursor-pointer transition-all"
+            >
+              <option v-for="cat in categories" :key="cat" :value="cat">
+                Category: {{ cat }}
+              </option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-stone-400">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+          </div>
+
+          <!-- Sort Dropdown -->
+          <div class="relative w-full sm:min-w-[200px]">
+            <select
+              v-model="sortBy"
+              class="w-full appearance-none pl-5 pr-10 py-3 bg-white rounded-full border border-rose-200 focus:outline-none focus:border-[#8B3A3A] focus:ring-1 focus:ring-[#8B3A3A] shadow-sm text-stone-600 text-sm font-semibold cursor-pointer transition-all"
+            >
+              <option value="latest">Sort: Latest</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-stone-400">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -189,11 +212,11 @@ const filteredProducts = computed(() => {
           <!-- Content Section -->
           <div class="p-6 flex flex-col flex-grow">
             <!-- Header: Title and Price -->
-            <div class="flex justify-between items-start mb-3">
-              <h3 class="text-lg font-serif text-[#4A2525] leading-tight pr-4 font-semibold">
+            <div class="flex justify-between items-start mb-3 gap-2">
+              <h3 class="flex-1 min-w-0 text-lg font-serif text-[#4A2525] leading-tight font-semibold break-words">
                 {{ product.name }}
               </h3>
-              <div class="text-right flex-shrink-0">
+              <div class="text-right shrink-0 min-w-max">
                 <p v-if="product.original_price" class="text-xs text-stone-400 line-through mb-0.5">
                   {{ formatPrice(product.original_price) }}
                 </p>
@@ -256,8 +279,8 @@ const filteredProducts = computed(() => {
             d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <h3 class="text-xl font-bold text-[#4A2525] mb-2">Bouquet Not Found</h3>
-        <p class="text-stone-500">Sorry, we couldn't find any products matching your search.</p>
+        <h3 class="text-xl font-bold text-[#4A2525] mb-2">Preparing Our Collection</h3>
+        <p class="text-stone-500">We are currently preparing beautiful bouquets for this category. Please check back later!</p>
         <button
           @click="
             searchQuery = '';
